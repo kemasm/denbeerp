@@ -101,10 +101,15 @@ class SiteController extends Controller
     {
         $model = new EntryForm();
 
-        if ($model->load(Yii:app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            // valid data received in $model
+
+            // do something meaningful here about $model ...
+
             return $this->render('entry-confirm', ['model' => $model]);
         } else {
-            return $this->render('entry', ['model' => $model])
+            // either the page is initially displayed or there is some validation error
+            return $this->render('entry', ['model' => $model]);
         }
     }
 }
