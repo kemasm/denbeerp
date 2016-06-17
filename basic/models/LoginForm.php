@@ -74,7 +74,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->nama);
+            $this->_user = Karyawan::findByNIKNama($this->nik,$this->nama);
         }
 
         return $this->_user;
