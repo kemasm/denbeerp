@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "karyawan".
@@ -29,7 +31,7 @@ use Yii;
  * @property integer $nominal_gaji
  * @property integer $no_lokasi
  */
-class Karyawan extends \yii\db\ActiveRecord
+class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * @inheritdoc
@@ -94,5 +96,28 @@ class Karyawan extends \yii\db\ActiveRecord
     public function validatePassword($password)
     {
         return $this->password === $password;
+    }
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+    public function getId()
+    {
+        return $this->nik;
+    }
+    public function getAuthKey()
+    {
+        throw new NotSupportedException();//You should not implement this method if you don't have authKey column in your database
+    }
+    public function validateAuthKey($authKey)
+    {
+       throw new NotSupportedException();//You should not implement this method if you don't have authKey column in your database
     }
 }
