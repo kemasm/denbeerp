@@ -45,9 +45,24 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+            if ($user){
+                if (!$user->validatePassword($this->password)) {
+                    $this->addError($attribute, 'Password salah.');
+                }
+            } else {
+                $nik_exist=true;
+                $nama_exist=true;
+                if (!Karyawan::findByNIK($this->nik)){
+                    $this->addError('nik', 'NIK salah.');
+                    $nik_exist=false;
+                }
+                if (!Karyawan::findByNama($this->nama)){
+                    $this->addError('nama', 'Nama salah.');
+                    $nama_exist=false;
+                }
+                if ($nik_exist && $nama_exist){
+                    $this->addError('nik', 'NIK dan Nama tidak sesuai.');
+                }
             }
         }
     }

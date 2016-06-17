@@ -92,6 +92,12 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public static function findByNIKNama($nik,$nama){
         return static::findOne(['nik'=>$nik, 'nama'=>$nama]);
     }
+    public static function findByNIK($nik){
+        return static::findOne(['nik'=>$nik]);
+    }
+    public static function findByNama($nama){
+        return static::findOne(['nama'=>$nama]);
+    }
 
     public function validatePassword($password)
     {
