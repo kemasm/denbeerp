@@ -17,7 +17,6 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\Karyawan',
             'enableAutoLogin' => false,
-            'enableSession' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
