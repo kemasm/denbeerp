@@ -93,3 +93,5 @@ a.desc:after {
 .menubox{
     text-align: center;
 }
+
+a { color:inherit; }
