@@ -90,6 +90,13 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+/*added*/
+
+.navbar{
+    background: white;
+    color: black;
+}
+
 .menubox{
     text-align: center;
 }
