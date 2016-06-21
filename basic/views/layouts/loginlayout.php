@@ -9,7 +9,6 @@ use app\assets\AppAsset;
 use app\assets\LoginAsset;
 
 AppAsset::register($this);
-LoginAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
