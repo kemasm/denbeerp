@@ -44,10 +44,13 @@ $this->title = 'Login';
     </div> -->
     <div class="card"></div>
     <div class="card">
-        <h1 class="title">Login</h1>
+        <div class="titlehead">
+            <h1 class="title">Login</h1>
+        </div>
+        <div class="divider"></div>
         <?php $form = ActiveForm::begin([
                 'id' => 'login-form',
-                'options' => ['class' => ''],
+                'options' => [],
                 'fieldConfig' => [
                     'template' => "      <div class=\"input-container no-border\">
             {input}

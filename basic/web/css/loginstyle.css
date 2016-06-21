@@ -31,7 +31,7 @@ body {
   position: relative;
   background: #ffffff;
   border-radius: 5px;
-  padding: 40px 0 40px 0;
+  padding: 0px 0 40px 0;
   box-sizing: border-box;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -webkit-transition: .3s ease;
@@ -49,13 +49,14 @@ body {
   margin: 0 10px;
   padding: 0;
 }
+
 .card .title {
   position: relative;
   z-index: 1;
-  border-left: 5px solid #ed2553;
-  margin: 0 0 35px;
+  border-left: 5px solid #ff5722;
+  margin: 0;
   padding: 10px 0 10px 50px;
-  color: #ed2553;
+  color: #fff;
   font-size: 32px;
   font-weight: 600;
   text-transform: uppercase;
@@ -84,20 +85,20 @@ body {
        -o-transition: none;
           transition: none;
 }
-.card .input-container input:focus ~ label {
+.card .form-group .input-container input:focus ~ label {
   color: #9d9d9d;
   -webkit-transform: translate(-12%, -50%) scale(0.75);
           transform: translate(-12%, -50%) scale(0.75);
 }
-.card .input-container input:focus ~ .bar:before, .card .input-container input:focus ~ .bar:after {
+.card .form-group .input-container input:focus ~ .bar:before, .card .input-container input:focus ~ .bar:after {
   width: 50%;
 }
-.card .input-container input:valid ~ label {
+.card .form-group .input-container input:valid ~ label {
   color: #9d9d9d;
   -webkit-transform: translate(-12%, -50%) scale(0.75);
           transform: translate(-12%, -50%) scale(0.75);
 }
-.card .input-container label {
+.card .form-group .input-container label {
   position: absolute;
   top: 0;
   left: 0;
@@ -108,7 +109,7 @@ body {
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
-.card .input-container .bar {
+.card .form-group .input-container .bar {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -119,7 +120,7 @@ body {
 .card .input-container .bar:before, .card .input-container .bar:after {
   content: '';
   position: absolute;
-  background: #ed2553;
+  background: #ff5722;
   width: 0;
   height: 2px;
   -webkit-transition: .2s ease;
@@ -149,15 +150,15 @@ body {
   line-height: 1;
   text-transform: uppercase;
   overflow: hidden;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
 }
 .card .button-container button span {
   position: relative;
   z-index: 1;
   color: #ddd;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
 }
 .card .button-container button:before {
   content: '';
@@ -165,20 +166,20 @@ body {
   top: 50%;
   left: 50%;
   display: block;
-  background: #ed2553;
+  background: #ff5722;
   width: 30px;
   height: 30px;
   border-radius: 100%;
   margin: -15px 0 0 -15px;
   opacity: 0;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
 }
 .card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
-  border-color: #ed2553;
+  border-color: #ff5722;
 }
 .card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
-  color: #ed2553;
+  color: #ff5722;
 }
 .card .button-container button:active span, .card .button-container button:focus span {
   color: #ffffff;
@@ -224,3 +225,20 @@ body {
     padding-top: 20px;
     margin: 0 auto;
 }
+.titlehead{
+  padding: 40px 0 40px;
+  background-color: #ff5722;
+}
+.divider{
+   display: block;
+   position: relative;
+   margin: 0px auto 50px;
+   height: 1px;
+   width: 100%;
+   max-height: 1px;
+   font-size: 1px;
+   clear: both;
+   background-color: #b6b6b6;
+   opacity: 0;
+}
+/*color old #ed2553*/
