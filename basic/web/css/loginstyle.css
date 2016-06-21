@@ -144,6 +144,7 @@ body {
   background: 0;
   width: 240px;
   border: 2px solid #e3e3e3;
+  border-radius: 5px;
   padding: 20px 0;
   font-size: 24px;
   font-weight: 600;
@@ -228,6 +229,8 @@ body {
 .titlehead{
   padding: 40px 0 40px;
   background-color: #ff5722;
+  border-top-right-radius: 5px;  
+  border-top-left-radius: 5px;
 }
 .divider{
    display: block;
