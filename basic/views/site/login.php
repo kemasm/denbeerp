@@ -14,8 +14,8 @@ LoginAsset::register($this);
 $this->title = 'Login';
 ?>
 <div class="container">
-    <div class="site-login">
-        <!-- <h1><?= Html::encode($this->title) ?></h1> -->
+    <!-- <div class="site-login">
+        <h1><?= Html::encode($this->title) ?></h1>
 
         <?php $form = ActiveForm::begin([
             'id' => 'login-form',
@@ -25,15 +25,13 @@ $this->title = 'Login';
                 'labelOptions' => ['class' => 'col-xs-1 control-label'],
             ],
         ]); ?>
-            <div class="input-container">
-
+            
             <?= $form->field($model, 'nik')->textInput(['autofocus' => true, 'placeholder'=>'NIK']) ?>
-            <div class="bar"></div>
-            </div>
+            
             <?= $form->field($model, 'nama')->textInput(['placeholder'=>'Nama']) ?>
 
             <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Password']) ?>
-            
+
             <div class="form-group">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-11">
@@ -42,7 +40,33 @@ $this->title = 'Login';
             </div>
             
         <?php ActiveForm::end(); ?>
-    </div>
+
+    </div> -->
+    <div class="card"></div>
+    <div class="card">
+        <h1 class="title">Login</h1>
+        <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+                'options' => ['class' => ''],
+                'fieldConfig' => [
+                    'template' => "      <div class=\"input-container\">
+            {input}
+            {label}
+            {error}
+            <div class=\"bar\"></div>
+          </div>
+    ",
+                    'labelOptions' => ['class' => 'col-xs-1 control-label'],
+                ],
+            ]); ?>
+            <?= $form->field($model, 'nik')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'nama')->textInput() ?>
+            <?= $form->field($model, 'password')->passwordInput() ?>
+            <div class="button-container">
+                <button><span>Go</span></button>
+            </div>
+        <?php ActiveForm::end(); ?>
+  </div>
 </div>
 <?php
 $this->registerJsFile('http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js');
