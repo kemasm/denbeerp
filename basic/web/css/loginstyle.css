@@ -122,10 +122,18 @@ body {
   background: none;
   width: 100%;
   height: 60px;
-  border: 0;
   color: #212121;
   font-size: 24px;
   font-weight: 400;
+}
+.no-border input{
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: none;
+       -o-transition: none;
+          transition: none;
 }
 .card .input-container input:focus ~ label {
   color: #9d9d9d;
@@ -247,106 +255,6 @@ body {
 .card .footer a:hover {
   color: #bababa;
 }
-.card.alt {
-  position: absolute;
-  top: 40px;
-  right: -70px;
-  z-index: 10;
-  width: 140px;
-  height: 140px;
-  background: none;
-  border-radius: 100%;
-  box-shadow: none;
-  padding: 0;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
-  /* Toggle */
-  /* Title */
-  /* Input */
-  /* Button */
-}
-.card.alt .toggle {
-  position: relative;
-  background: #ed2553;
-  width: 140px;
-  height: 140px;
-  border-radius: 100%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  color: #ffffff;
-  font-size: 58px;
-  line-height: 140px;
-  text-align: center;
-  cursor: pointer;
-}
-.card.alt .toggle:before {
-  content: '\f040';
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
-}
-.card.alt .title,
-.card.alt .input-container,
-.card.alt .button-container {
-  left: 100px;
-  opacity: 0;
-  visibility: hidden;
-}
-.card.alt .title {
-  position: relative;
-  border-color: #ffffff;
-  color: #ffffff;
-}
-.card.alt .title .close {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 60px;
-  display: inline;
-  color: #ffffff;
-  font-size: 58px;
-  font-weight: 400;
-}
-.card.alt .title .close:before {
-  content: '\00d7';
-}
-.card.alt .input-container input {
-  color: #ffffff;
-}
-.card.alt .input-container input:focus ~ label {
-  color: #ffffff;
-}
-.card.alt .input-container input:focus ~ .bar:before, .card.alt .input-container input:focus ~ .bar:after {
-  background: #ffffff;
-}
-.card.alt .input-container input:valid ~ label {
-  color: #ffffff;
-}
-.card.alt .input-container label {
-  color: rgba(255, 255, 255, 0.8);
-}
-.card.alt .input-container .bar {
-  background: rgba(255, 255, 255, 0.8);
-}
-.card.alt .button-container button {
-  width: 100%;
-  background: #ffffff;
-  border-color: #ffffff;
-}
-.card.alt .button-container button span {
-  color: #ed2553;
-}
-.card.alt .button-container button:hover {
-  background: rgba(255, 255, 255, 0.9);
-}
-.card.alt .button-container button:active:before, .card.alt .button-container button:focus:before {
-  display: none;
-}
-
 /* Keyframes */
 @-webkit-keyframes buttonFadeInUp {
   0% {

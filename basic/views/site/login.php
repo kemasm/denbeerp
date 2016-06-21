@@ -49,7 +49,7 @@ $this->title = 'Login';
                 'id' => 'login-form',
                 'options' => ['class' => ''],
                 'fieldConfig' => [
-                    'template' => "      <div class=\"input-container\">
+                    'template' => "      <div class=\"input-container no-border\">
             {input}
             {label}
             {error}
