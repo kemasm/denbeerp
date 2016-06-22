@@ -4,6 +4,7 @@ body {
 }
 
 .wrap {
+    background: #F5f5f5;
     min-height: 100%;
     height: auto;
     margin: 0 auto -60px;
@@ -89,12 +90,68 @@ a.desc:after {
 /*added*/
 
 .navbar{
+    vertical-align: middle;
+    min-height: 65px;
     background: white;
     color: black;
+    border:0;
+    box-shadow: 0px 0.5px 3px 0.2px rgba(0, 0, 0, 0.15);
+    line-height: 3;
 }
 
-.menubox{
-    text-align: center;
+.navbar .btn-link:hover,.btn-link:focus{
+    color:#909090;
+    text-decoration: none;
 }
 
 a { color:inherit; }
+
+/*site-index*/
+.site-index{
+    margin-top: 80px;
+}
+
+.site-index .col-xs-2{
+    min-width: 150px;
+    padding:0;
+}
+.site-index .module{
+    background-color: white;
+    text-align: center;
+    min-height: 128px;
+    min-width: 140px;
+    margin: 5px;
+    border-radius: 5px;
+    -webkit-transition: .7s ease;
+            transition: .7s ease;
+    border: 1px solid transparent;
+  }
+.site-index .module .module-icon{
+    padding-top: 20px;
+    padding-bottom: 5px;
+    color: #777777;
+    -webkit-transition: .7s ease;
+            transition: .7s ease;
+}
+.site-index .module .module-text{
+    color: #777777;
+    -webkit-transition: .7s ease;
+            transition: .7s ease;
+}
+
+.site-index .module:hover{
+    border-color: #ff5722;
+}
+
+.site-index .module:hover .module-text, .site-index .module:hover .module-icon{
+    color:#ff5722;
+}
+
+.site-index .module:hover .module-icon{
+    -webkit-transform: scale(1.1,1.1);
+            transform: scale(1.1,1.1);
+}
+
+.site-index .module .module-text{
+    font-size: 0.9em;
+}

@@ -50,8 +50,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->redirect(Url::toRoute('karyawan/index'));
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(Url::toRoute('login'));
         } else {    
             return $this->render('index');
         }

@@ -6,10 +6,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 use yii\web\View;
-use app\assets\LoginAsset;
-
-LoginAsset::register($this);
 
 $this->title = 'Login';
 ?>
@@ -45,7 +43,7 @@ $this->title = 'Login';
     <div class="card"></div>
     <div class="card">
         <div class="titlehead">
-            <h1 class="title">Login</h1>
+            <h1 class="title"><?= Html::img('uploads/denbe/logo.png', ['width'=>'150px']);?></h1>
         </div>
         <div class="divider"></div>
         <?php $form = ActiveForm::begin([
@@ -53,20 +51,19 @@ $this->title = 'Login';
                 'options' => [],
                 'fieldConfig' => [
                     'template' => "      <div class=\"input-container no-border\">
-            {input}
-            {label}
+            {input}\n
+            <div class=\"bar\"></div>\n
             {error}
-            <div class=\"bar\"></div>
           </div>
     ",
                     'labelOptions' => ['class' => 'col-xs-1 control-label'],
                 ],
             ]); ?>
-            <?= $form->field($model, 'nik')->textInput(['autofocus' => true]) ?>
-            <?= $form->field($model, 'nama')->textInput() ?>
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'nik')->textInput(['autofocus' => true,'placeholder'=>'NIK']) ?>
+            <?= $form->field($model, 'nama')->textInput(['placeholder'=>'Nama']) ?>
+            <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Password']) ?>
             <div class="button-container">
-                <button><span>Go</span></button>
+                <button><span>LOGIN</span></button>
             </div>
         <?php ActiveForm::end(); ?>
   </div>
