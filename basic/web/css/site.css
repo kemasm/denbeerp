@@ -115,6 +115,9 @@ a { color:inherit; }
 .site-index .col-xs-2{
     padding:0;
 }
+.site-index .col-xs-2 a{
+    text-decoration: none;
+}
 .site-index .module{
     background-color: white;
     text-align: center;
@@ -125,7 +128,7 @@ a { color:inherit; }
     -webkit-transition: .7s ease;
             transition: .7s ease;
     border: 1px solid transparent;
-  }
+}
 .site-index .module .module-icon{
     padding-top: 30px;
     padding-bottom: 1px;
@@ -159,7 +162,24 @@ a { color:inherit; }
 .sidebar{
     position: absolute;
     height: 100%;
-    width: 200px;
+    width: 0px;
     overflow-y: hidden;
+    background: white;
     padding-top: 65px;
+    -webkit-transition: .7s ease;
+            transition: .7s ease;
+}
+.sidebar .list-group-item{
+    border: 0;
+}
+.sidebar .list-group-item:hover{
+    background: #eee;
+}
+
+.displayed-sidebar .site-index {
+    padding-left: 200px;
+}
+
+.displayed-sidebar .sidebar{
+    width: 200px;
 }
