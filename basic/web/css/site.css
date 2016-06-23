@@ -110,6 +110,8 @@ a { color:inherit; }
 .site-index{
     margin-top: 80px;
     padding: 0 50px;
+    -webkit-transition: .7s ease;
+            transition: .7s ease;
 }
 
 .site-index .col-xs-2{
@@ -128,6 +130,8 @@ a { color:inherit; }
     -webkit-transition: .7s ease;
             transition: .7s ease;
     border: 1px solid transparent;
+    box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.15);
+
 }
 .site-index .module .module-icon{
     padding-top: 30px;
@@ -176,10 +180,24 @@ a { color:inherit; }
     background: #eee;
 }
 
-.displayed-sidebar .site-index {
+
+/*when sidebar is displayed*/
+.displayed-general-sidebar .site-index,
+.displayed-hr-sidebar .site-index,
+.displayed-procurement-sidebar .site-index,
+.displayed-marketing-sidebar .site-index,
+.displayed-fixed-asset-sidebar .site-index,
+.displayed-gl-sidebar .site-index
+{
     padding-left: 200px;
 }
 
-.displayed-sidebar .sidebar{
+.displayed-general-sidebar      #general-sidebar,
+.displayed-hr-sidebar           #hr-sidebar,
+.displayed-procurement-sidebar  #procurement-sidebar,
+.displayed-marketing-sidebar    #marketing-sidebar,
+.displayed-fixed-asset-sidebar  #fixed-asset-sidebar,
+.displayed-gl-sidebar           #gl-sidebar
+{
     width: 200px;
 }

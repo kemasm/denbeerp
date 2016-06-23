@@ -9,7 +9,7 @@ $this->title = 'denbeerp';
 <div id="wrapper">
 <!-- Sidebars -->
 <!-- General -->
-    <div class="sidebar" id="sidebar-general">
+    <div class="sidebar" id="general-sidebar">
         <ul class="list-group">
             <li class="list-group-item">GENERAL</li>
             <li class="list-group-item">Cras justo odio</li>
@@ -20,7 +20,7 @@ $this->title = 'denbeerp';
         </ul>
     </div>
     <!-- HR -->
-    <div class="sidebar" id="sidebar-hr">
+    <div class="sidebar" id="hr-sidebar">
         <ul class="list-group">
             <li class="list-group-item">HR</li>
             <li class="list-group-item">Cras justo odio</li>
@@ -31,7 +31,7 @@ $this->title = 'denbeerp';
         </ul>
     </div>
     <!-- Procurement -->
-    <div class="sidebar" id="sidebar-procurement">
+    <div class="sidebar" id="procurement-sidebar">
         <ul class="list-group">
             <li class="list-group-item">PROCUREMENT</li>
             <li class="list-group-item">Cras justo odio</li>
@@ -42,7 +42,7 @@ $this->title = 'denbeerp';
         </ul>
     </div>
     <!-- Marketing -->
-    <div class="sidebar" id="sidebar-marketing">
+    <div class="sidebar" id="marketing-sidebar">
         <ul class="list-group">
             <li class="list-group-item">MARKETING</li>
             <li class="list-group-item">Cras justo odio</li>
@@ -53,7 +53,7 @@ $this->title = 'denbeerp';
         </ul>
     </div>
     <!-- Fixed Asset -->
-    <div class="sidebar" id="sidebar-fixedasset">
+    <div class="sidebar" id="fixed-asset-sidebar">
         <ul class="list-group">
             <li class="list-group-item">FIXEDASSET</li>
             <li class="list-group-item">Cras justo odio</li>
@@ -64,7 +64,7 @@ $this->title = 'denbeerp';
         </ul>
     </div>
     <!-- GL -->
-    <div class="sidebar" id="sidebar-gl">
+    <div class="sidebar" id="gl-sidebar">
         <ul class="list-group">
             <li class="list-group-item">GL</li>
             <li class="list-group-item">Cras justo odio</li>
@@ -134,6 +134,56 @@ $this->title = 'denbeerp';
 <script>
     $("#general-toggle").click(function(e){
         e.preventDefault();
-        $("#wrapper").toggleClass("displayed-sidebar");
+        $("#wrapper").toggleClass("displayed-general-sidebar");
+        $("#wrapper").removeClass("displayed-hr-sidebar");
+        $("#wrapper").removeClass("displayed-procurement-sidebar");
+        $("#wrapper").removeClass("displayed-marketing-sidebar");
+        $("#wrapper").removeClass("displayed-fixed-asset-sidebar");
+        $("#wrapper").removeClass("displayed-gl-sidebar");
+    });
+    $("#hr-toggle").click(function(e){
+        e.preventDefault();
+        $("#wrapper").toggleClass("displayed-hr-sidebar");
+        $("#wrapper").removeClass("displayed-general-sidebar");
+        $("#wrapper").removeClass("displayed-procurement-sidebar");
+        $("#wrapper").removeClass("displayed-marketing-sidebar");
+        $("#wrapper").removeClass("displayed-fixed-asset-sidebar");
+        $("#wrapper").removeClass("displayed-gl-sidebar");
+    });
+    $("#procurement-toggle").click(function(e){
+        e.preventDefault();
+        $("#wrapper").toggleClass("displayed-procurement-sidebar");
+        $("#wrapper").removeClass("displayed-general-sidebar");
+        $("#wrapper").removeClass("displayed-hr-sidebar");
+        $("#wrapper").removeClass("displayed-marketing-sidebar");
+        $("#wrapper").removeClass("displayed-fixed-asset-sidebar");
+        $("#wrapper").removeClass("displayed-gl-sidebar");
+    });
+    $("#marketing-toggle").click(function(e){
+        e.preventDefault();
+        $("#wrapper").toggleClass("displayed-marketing-sidebar");
+        $("#wrapper").removeClass("displayed-general-sidebar");
+        $("#wrapper").removeClass("displayed-hr-sidebar");
+        $("#wrapper").removeClass("displayed-procurement-sidebar");
+        $("#wrapper").removeClass("displayed-fixed-asset-sidebar");
+        $("#wrapper").removeClass("displayed-gl-sidebar");
+    });
+    $("#fixed-asset-toggle").click(function(e){
+        e.preventDefault();
+        $("#wrapper").toggleClass("displayed-fixed-asset-sidebar");
+        $("#wrapper").removeClass("displayed-general-sidebar");
+        $("#wrapper").removeClass("displayed-hr-sidebar");
+        $("#wrapper").removeClass("displayed-procurement-sidebar");
+        $("#wrapper").removeClass("displayed-marketing-sidebar");
+        $("#wrapper").removeClass("displayed-gl-sidebar");
+    });
+    $("#gl-toggle").click(function(e){
+        e.preventDefault();
+        $("#wrapper").toggleClass("displayed-gl-sidebar");
+        $("#wrapper").removeClass("displayed-general-sidebar");
+        $("#wrapper").removeClass("displayed-hr-sidebar");
+        $("#wrapper").removeClass("displayed-procurement-sidebar");
+        $("#wrapper").removeClass("displayed-marketing-sidebar");
+        $("#wrapper").removeClass("displayed-fixed-asset-sidebar");
     });
 </script>
