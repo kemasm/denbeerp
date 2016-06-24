@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/uploads/denbe/logo.png', ['height' => 30]),
+        'brandLabel' => Html::img('@web/uploads/denbe/logo-white.png', ['height' => 30]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -55,11 +55,12 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
+    <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= $content ?>
+    </div>
 </div>
 
 <footer class="footer">

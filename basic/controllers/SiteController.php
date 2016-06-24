@@ -118,4 +118,13 @@ class SiteController extends Controller
             return $this->render('entry', ['model' => $model]);
         }
     }
+
+    public function actionGeneral()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(Url::toRoute('login'));
+        } else {    
+            return $this->render('general');
+        }
+    }
 }
