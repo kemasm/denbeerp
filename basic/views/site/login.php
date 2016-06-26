@@ -40,7 +40,7 @@ $this->title = 'Login';
         <?php ActiveForm::end(); ?>
 
     </div> -->
-    <div class="card"></div>
+    <div class="card" style="display:none;"></div>
     <div class="card">
         <div class="titlehead">
             <h1 class="title"><?= Html::img('uploads/denbe/logo.png', ['width'=>'150px']);?></h1>
