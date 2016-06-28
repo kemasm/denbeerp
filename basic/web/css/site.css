@@ -33,6 +33,10 @@ body {
     font-style: italic;
 }
 
+.breadcrumb{
+    padding-top: 50px;
+}
+
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
@@ -95,7 +99,7 @@ a.desc:after {
     background: #ff5722;
     color: white;
     border:0;
-    box-shadow: 0px 0.5px 3px 0.2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 5px 3px 0.25px rgba(0, 0, 0, 0.15);
     line-height: 3;
 }
 
@@ -168,6 +172,7 @@ a { color:inherit; }
 
 .sidebar{
     position: absolute;
+    left: 0px;
     height: 100%;
     width: 0px;
     overflow-y: hidden;
@@ -183,7 +188,7 @@ a { color:inherit; }
 }
 
 
-/*when sidebar is displayed*/x`x
+/*when sidebar is displayed*/
 .displayed-general-sidebar .site-index,
 .displayed-hr-sidebar .site-index,
 .displayed-procurement-sidebar .site-index,
@@ -239,7 +244,15 @@ a { color:inherit; }
     position: absolute;
     width: 200px;
     overflow-y: hidden;
-    padding-top: 20px;
+    box-shadow: 3px 5px 4px 0.25px rgba(0,0,0,0.15);
+}
+
+.feature-menu .list-group{
+    margin-bottom: 0px;
+}
+
+.feature-menu .list-group-item{
+    border:0px;
 }
 
 .cuti-index{
@@ -275,10 +288,51 @@ a { color:inherit; }
 .cuti-form{
     width: 550px;
 }
-
+\
 .cuti-view{
     padding-left: 220px;
     max-width: 800px;
     width: 100%;
+}
+
+.table{
+    background-color: white;
+}
+
+.table thead tr th {
+    color: #448AFF;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tbody tr{
+    -webkit-transition: .3s ease;
+            transition: .3s ease;   
+}
+.table tbody tr:hover{
+    background-color: #fafafa;
+}
+
+.table tbody tr.selected{
+    background-color: #efefef;
+}
+
+p .btn {
+    box-shadow: 0px 3px 4px 1px rgba(0,0,0,0.15);
+    border-radius: 1px;
+}
+
+.box{
+    background-color: white;
+    box-shadow: 3px 5px 4px 0.25px rgba(0,0,0,0.15);
+}
+
+.box h1{
+    padding-top: 27px;
+    padding-left: 23px;
+}
+.box .summary{
+    padding-left: 25px;
 }
 

@@ -45,7 +45,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->nama . ')',
+                    '<span class="fa fa-user"></span> Logout (' . Yii::$app->user->identity->nama . ')',
                     ['class' => 'btn btn-link']
                 )
                 . Html::endForm()

@@ -20,27 +20,39 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <div class="cuti-index">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="box">
+        <h1><?= Html::encode($this->title) ?></h1>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            'id_cuti',
-            'nik',
-            'tanggal_awal',
-            'tanggal_akhir',
-            'nik_penyetuju',
-            // 'keterangan',
+                'id_cuti',
+                'nik',
+                'tanggal_awal',
+                'tanggal_akhir',
+                'nik_penyetuju',
+                // 'keterangan',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-        
-    ]); ?>
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+            'tableOptions' => [
+                'class' => 'table'
+            ]
+            
+        ]); ?>
+    </div>
     <p>
         <?= Html::a('Create Cuti', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
+    $("tbody tr").click(function() {
+        $(this).toggleClass('selected').siblings().removeClass("selected");
+    });
+</script>
