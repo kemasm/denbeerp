@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
+                ['class' => 'yii\grid\CheckboxColumn'],
 
                 'id_cuti',
                 'nik',
@@ -52,7 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script>
-    $("tbody tr").click(function() {
-        $(this).toggleClass('selected').siblings().removeClass("selected");
+    $("input[type=checkbox]:checked").each(function() {
+        $(this).parents("tr").addClass('selected');
+    });
+    $("input[type=checkbox]").live("change", function() {
+        $(this).parents("tr").toggleClass('selected');
     });
 </script>
