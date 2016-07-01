@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\helpers\Html;
 
 $this->title = 'denbeerp';
 ?>
@@ -9,14 +10,13 @@ $this->title = 'denbeerp';
 <!-- Sidebars -->
 <!-- General -->
     <div class="sidebar" id="general-sidebar">
-        <ul class="list-group">
-            <li class="list-group-item">GENERAL</li>
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
+        <div class="list-group">
+            <div class="list-group-item">GENERAL</div>
+            <?= Html::a('Hutang', ['hutang/index'],['class' => 'list-group-item']) ?>
+            <?= Html::a('Cuti', ['cuti/index'], ['class' => 'list-group-item']) ?>
+            <div class="list-group-item">Jadwal Libur</div>
+            <div class="list-group-item">Slip Gaji</div>
+        </div>
     </div>
     <!-- HR -->
     <div class="sidebar" id="hr-sidebar">

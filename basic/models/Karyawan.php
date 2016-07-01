@@ -65,7 +65,7 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function attributeLabels()
     {
         return [
-            'nik' => 'Nik',
+            'nik' => 'NIK',
             'nama' => 'Nama',
             'password' => 'Password',
             'tanggal_lahir' => 'Tanggal Lahir',
@@ -75,10 +75,10 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             'email' => 'Email',
             'status_pernikahan' => 'Status Pernikahan',
             'tanggal_masuk' => 'Tanggal Masuk',
-            'file_ktp' => 'File Ktp',
-            'file_npwp' => 'File Npwp',
-            'file_bpjs' => 'File Bpjs',
-            'file_cv' => 'File Cv',
+            'file_ktp' => 'File KTP',
+            'file_npwp' => 'File NPWP',
+            'file_bpjs' => 'File BPJS',
+            'file_cv' => 'File CV',
             'file_ijazah' => 'File Ijazah',
             'file_transkrip' => 'File Transkrip',
             'status_karyawan' => 'Status Karyawan',

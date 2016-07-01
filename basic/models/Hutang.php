@@ -53,7 +53,7 @@ class Hutang extends \yii\db\ActiveRecord
     {
         return [
             'no_penyetujuan' => 'No Penyetujuan',
-            'nik' => 'Nik',
+            'nik' => 'NIK',
             'jumlah' => 'Jumlah',
             'tanggal_pengajuan' => 'Tanggal Pengajuan',
             'jaminan' => 'Jaminan',

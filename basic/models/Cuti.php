@@ -47,11 +47,11 @@ class Cuti extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_cuti' => 'Id Cuti',
-            'nik' => 'Nik',
+            'id_cuti' => 'ID Cuti',
+            'nik' => 'NIK',
             'tanggal_awal' => 'Tanggal Awal',
             'tanggal_akhir' => 'Tanggal Akhir',
-            'nik_penyetuju' => 'Nik Penyetuju',
+            'nik_penyetuju' => 'NIK Penyetuju',
             'keterangan' => 'Keterangan',
         ];
     }

@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Cuti */
 
-$this->title = $model->id_cuti;
-$this->params['breadcrumbs'][] = ['label' => 'Cutis', 'url' => ['index']];
+$this->title = 'View Cuti '.$model->id_cuti;
+$this->params['breadcrumbs'][] = ['label' => 'Cuti', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -21,21 +21,34 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <div class="cuti-view">
+    <div class="box">
+        <h1><?= Html::encode($this->title) ?></h1>
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id_cuti',
-            'nik',
-            'tanggal_awal',
-            'tanggal_akhir',
-            'nik_penyetuju',
-            'keterangan',
-        ],
-    ]) ?>
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+                [
+                    'attribute' => 'id_cuti',
+                    'label' => 'ID Cuti',
+                ],
+                [
+                    'attribute' => 'nik',
+                    'label' => 'NIK',
+                ],
+                'tanggal_awal',
+                'tanggal_akhir',
+                [
+                    'attribute' => 'nik_penyetuju',
+                    'label' => 'NIK Penyetuju',
+                ],
+                'keterangan',
+            ],
+            'options' => [
+                'class' => 'table detail-view'
+            ]
+        ]) ?>
+    </div>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id_cuti], ['class' => 'btn btn-primary']) ?>

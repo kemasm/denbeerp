@@ -24,13 +24,13 @@ use yii\widgets\ActiveForm;
                 ],
             ]); ?>
 
-        <?= $form->field($model, 'tanggal_awal')->input('date', ['class' => "form-control date-field"]) ?>
+        <?= $form->field($model, 'tanggal_awal')->input('date', ['placeholder' => '01-01-2016', 'class' => "form-control date-field"]) ?>
 
-        <?= $form->field($model, 'tanggal_akhir')->input('date', ['class' => "form-control date-field"]) ?>
+        <?= $form->field($model, 'tanggal_akhir')->input('date', ['placeholder' => '01-01-2016', 'class' => "form-control date-field"]) ?>
 
         <?= $form->field($model, 'keterangan')->textArea(['placeholder' => 'Keterangan', 'maxlength' => true, 'rows' => 3]) ?>
 
-        <div class="form-group col-xs-offset-3 col-xs-9">
+        <div class="form-group col-xs-offset-3 col-xs-9 btn-create">
             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
 

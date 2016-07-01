@@ -8,7 +8,7 @@ use yii\web\Controller;
 /* @var $searchModel app\models\CutiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cutis';
+$this->title = 'Cuti';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feature-menu">
@@ -30,11 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\CheckboxColumn'],
 
-                'id_cuti',
-                'nik',
+                [
+                    'attribute' => 'id_cuti',
+                    'label' => 'ID Cuti',
+                ],
+                [
+                    'attribute' => 'nik',
+                    'label' => 'NIK',
+                ],
                 'tanggal_awal',
                 'tanggal_akhir',
-                'nik_penyetuju',
+                [
+                    'attribute' => 'nik_penyetuju',
+                    'label' => 'NIK Penyetuju',
+                ],
                 // 'keterangan',
 
                 ['class' => 'yii\grid\ActionColumn'],

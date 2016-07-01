@@ -255,7 +255,8 @@ a { color:inherit; }
     border:0px;
 }
 
-.cuti-index{
+.cuti-index, .cuti-view, .cuti-create, .cuti-update,
+.hutang-index, .hutang-view, .hutang-create, .hutang-update{
     padding-left: 220px;
 }
 
@@ -271,12 +272,10 @@ a { color:inherit; }
 }
 
 .header-text{
-    text-align:center;
-    font-size: 2em;
     padding-bottom: 20px;
 }
 
-.cuti-create{
+.cuti-create-box{
     width: 600px;
     border: 1px solid #b6b6b6;
     border-radius: 10px;
@@ -288,9 +287,8 @@ a { color:inherit; }
 .cuti-form{
     width: 550px;
 }
-\
+
 .cuti-view{
-    padding-left: 220px;
     max-width: 800px;
     width: 100%;
 }
@@ -328,11 +326,50 @@ p .btn {
     box-shadow: 3px 5px 4px 0.25px rgba(0,0,0,0.15);
 }
 
-.box h1{
-    padding-top: 27px;
-    padding-left: 23px;
-}
-.box .summary{
-    padding-left: 25px;
+.box {
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom: 1px;
+    margin-bottom: 20px;
 }
 
+.box h1{
+    padding-top: 27px;
+}
+
+.table.detail-view{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.table.detail-view th {
+    width: 27%;
+    text-indent: 10px;
+    color: #448AFF;
+    vertical-align: middle;
+}
+
+.table.detail-view td {
+    widows: 73%;
+    vertical-align: middle;
+}
+
+.table.detail-view tr {
+    height: 50px;
+}
+
+.cuti-view .btn-danger{
+    margin-left: 5px; 
+}
+
+p .btn {
+    border-radius: 5px;
+}
+
+.date-label:before {
+    content: "\f073";
+    font-family: FontAwesome;
+    font-weight: 300;
+    line-height: 30px;
+    /* more styling for the icon, including color, font-size, positioning, etc. */
+}
