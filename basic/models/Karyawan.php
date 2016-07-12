@@ -48,7 +48,7 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     {
         return [
             [['nik', 'nama', 'password', 'tanggal_lahir', 'tempat_lahir', 'no_identitas', 'jenis_kelamin', 'email', 'status_pernikahan', 'tanggal_masuk', 'status_karyawan', 'sisa_cuti'], 'required'],
-            [['nik'], 'string', 'length' => [6]]
+            [['nik'], 'string', 'length' => [6]],
             [['sisa_cuti', 'nominal_gaji', 'no_lokasi'], 'integer'],
             [['tanggal_lahir', 'tanggal_masuk'], 'safe'],
             [['nama'], 'string', 'max' => 30],
