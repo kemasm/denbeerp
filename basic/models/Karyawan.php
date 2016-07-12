@@ -47,15 +47,18 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function rules()
     {
         return [
-            [['nik', 'nama', 'password', 'tanggal_lahir', 'tempat_lahir', 'no_identitas', 'jenis_kelamin', 'email', 'status_pernikahan', 'tanggal_masuk', 'file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip', 'status_karyawan', 'sisa_cuti', 'jabatan', 'nominal_gaji', 'no_lokasi'], 'required'],
-            [['nik', 'sisa_cuti', 'nominal_gaji', 'no_lokasi'], 'integer'],
+            [['nik', 'nama', 'password', 'tanggal_lahir', 'tempat_lahir', 'no_identitas', 'jenis_kelamin', 'email', 'status_pernikahan', 'tanggal_masuk', 'status_karyawan', 'sisa_cuti'], 'required'],
+            [['nik'], 'string', 'length' => [6]]
+            [['sisa_cuti', 'nominal_gaji', 'no_lokasi'], 'integer'],
             [['tanggal_lahir', 'tanggal_masuk'], 'safe'],
             [['nama'], 'string', 'max' => 30],
-            [['password'], 'string', 'max' => 32],
+            [['password'], 'string', 'length' => [7,12]],
             [['tempat_lahir', 'no_identitas', 'jabatan'], 'string', 'max' => 20],
-            [['jenis_kelamin'], 'string', 'max' => 1],
+            [['jenis_kelamin'], 'string', 'length' => 1],
             [['email', 'status_pernikahan', 'status_karyawan'], 'string', 'max' => 50],
             [['file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip'], 'string', 'max' => 255],
+            [['file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip', 'jabatan'], 'default', 'value' => null],
+            [['nominal_gaji', 'no_lokasi'], 'default', 'value' => 0]
         ];
     }
 
