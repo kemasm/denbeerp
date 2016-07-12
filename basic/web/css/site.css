@@ -256,7 +256,8 @@ a { color:inherit; }
 }
 
 .cuti-index, .cuti-view, .cuti-create, .cuti-update,
-.hutang-index, .hutang-view, .hutang-create, .hutang-update{
+.hutang-index, .hutang-view, .hutang-create, .hutang-update,
+.karyawan-index, .karyawan-view, .karyawan-create, .karyawan-update{
     padding-left: 220px;
 }
 
@@ -284,11 +285,11 @@ a { color:inherit; }
     background: white;
 }
 
-.cuti-form{
+.cuti-form, .karyawan-form{
     width: 550px;
 }
 
-.cuti-view{
+.cuti-view, .karyawan-view{
     max-width: 800px;
     width: 100%;
 }

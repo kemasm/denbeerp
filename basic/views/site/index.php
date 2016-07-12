@@ -2,6 +2,8 @@
 
 /* @var $this yii\web\View */
 use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\web\Controller;
 
 $this->title = 'denbeerp';
 ?>
@@ -22,7 +24,7 @@ $this->title = 'denbeerp';
     <div class="sidebar" id="hr-sidebar">
         <ul class="list-group">
             <li class="list-group-item">HR</li>
-            <li class="list-group-item">Cras justo odio</li>
+            <?= Html::a('Karyawan', ['karyawan/index'],['class' => 'list-group-item']) ?>
             <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item">Morbi leo risus</li>
             <li class="list-group-item">Porta ac consectetur ac</li>

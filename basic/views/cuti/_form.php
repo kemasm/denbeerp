@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'keterangan')->textArea(['placeholder' => 'Keterangan', 'maxlength' => true, 'rows' => 3]) ?>
 
-        <div class="form-group col-xs-offset-3 col-xs-9 btn-create">
+        <div class="form-group col-xs-offset-3 btn-create">
             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
 
