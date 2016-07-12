@@ -31,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'nik',
                 'nama',
-                'password',
+                //'password',
                 'tanggal_lahir',
-                'tempat_lahir',
-                // 'no_identitas',
+                //'tempat_lahir',
+                'no_identitas',
                 // 'jenis_kelamin',
                 // 'email:email',
                 // 'status_pernikahan',
@@ -51,7 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'gaji',
                 // 'no_lokasi',
 
-                ['class' => 'yii\grid\ActionColumn'],
+                ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update}']
             ],
                 'tableOptions' => [
                     'class' => 'table'

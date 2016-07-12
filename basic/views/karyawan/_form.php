@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'no_identitas')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'jenis_kelamin')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'jenis_kelamin')->dropDownList(['l' => 'Laki-laki', 'p' => 'Perempuan']) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
