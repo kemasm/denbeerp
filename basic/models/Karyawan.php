@@ -28,7 +28,7 @@ use yii\web\IdentityInterface;
  * @property string $status_karyawan
  * @property integer $sisa_cuti
  * @property string $jabatan
- * @property integer $nominal_gaji
+ * @property integer $gaji
  * @property integer $no_lokasi
  */
 class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
@@ -49,7 +49,7 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return [
             [['nik', 'nama', 'password', 'tanggal_lahir', 'tempat_lahir', 'no_identitas', 'jenis_kelamin', 'email', 'status_pernikahan', 'tanggal_masuk', 'status_karyawan', 'sisa_cuti'], 'required'],
             [['nik'], 'string', 'length' => [6]],
-            [['sisa_cuti', 'nominal_gaji', 'no_lokasi'], 'integer'],
+            [['sisa_cuti', 'gaji', 'no_lokasi'], 'integer'],
             [['tanggal_lahir', 'tanggal_masuk'], 'safe'],
             [['nama'], 'string', 'max' => 30],
             [['password'], 'string', 'length' => [7,12]],
@@ -58,7 +58,7 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             [['email', 'status_pernikahan', 'status_karyawan'], 'string', 'max' => 50],
             [['file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip'], 'string', 'max' => 255],
             [['file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip', 'jabatan'], 'default', 'value' => null],
-            [['nominal_gaji', 'no_lokasi'], 'default', 'value' => 0]
+            [['gaji', 'no_lokasi'], 'default', 'value' => 0]
         ];
     }
 
@@ -87,7 +87,7 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             'status_karyawan' => 'Status Karyawan',
             'sisa_cuti' => 'Sisa Cuti',
             'jabatan' => 'Jabatan',
-            'nominal_gaji' => 'Nominal Gaji',
+            'gaji' => 'Nominal Gaji',
             'no_lokasi' => 'No Lokasi',
         ];
     }
