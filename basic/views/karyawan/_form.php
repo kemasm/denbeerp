@@ -22,9 +22,9 @@ $listLokasi = ArrayHelper::map($lokasis, 'no_lokasi', 'nama_lokasi');
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tanggal_lahir')->textInput() ?>
+    <?= $form->field($model, 'tempat_lahir')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'tanggal_lahir')->input('date', ['placeholder' => '01-01-2016', 'class' => "form-control date-field"]) ?> 
 

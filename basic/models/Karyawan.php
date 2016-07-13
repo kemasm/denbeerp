@@ -54,7 +54,7 @@ class Karyawan extends \yii\db\ActiveRecord
     */
     public $ktp;
     public $npwp;
-    public $npjs;
+    public $bpjs;
     public $cv;
     public $transkrip;
     public $ijazah;
