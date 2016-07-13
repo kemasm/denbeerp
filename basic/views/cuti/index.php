@@ -30,20 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\CheckboxColumn'],
 
-                [
-                    'attribute' => 'id_cuti',
-                    'label' => 'ID Cuti',
-                ],
-                [
-                    'attribute' => 'nik',
-                    'label' => 'NIK',
-                ],
+                'id_cuti',
+                'nik',
                 'tanggal_awal',
                 'tanggal_akhir',
-                [
-                    'attribute' => 'nik_penyetuju',
-                    'label' => 'NIK Penyetuju',
-                ],
+                'nik_penyetuju',
                 // 'keterangan',
 
                 ['class' => 'yii\grid\ActionColumn'],
