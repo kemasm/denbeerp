@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\KaryawanSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Karyawans';
+$this->title = 'Karyawan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feature-menu">

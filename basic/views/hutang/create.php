@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Hutang */
 
 $this->title = 'Create Hutang';
-$this->params['breadcrumbs'][] = ['label' => 'Hutangs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Hutang', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feature-menu">

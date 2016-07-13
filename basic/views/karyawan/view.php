@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Karyawan */
 
 $this->title = 'View Karyawan '.$model->nik;
-$this->params['breadcrumbs'][] = ['label' => 'Karyawans', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Karyawan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feature-menu">

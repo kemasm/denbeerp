@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\models\Karyawan */
 
 $this->title = 'Update Karyawan: ' . $model->nik;
-$this->params['breadcrumbs'][] = ['label' => 'Karyawans', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->nik, 'url' => ['view', 'id' => $model->nik]];
+$this->params['breadcrumbs'][] = ['label' => 'Karyawan', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'View Karyawan '.$model->nik, 'url' => ['view', 'id' => $model->nik]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="feature-menu">

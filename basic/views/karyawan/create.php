@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Karyawan */
 
 $this->title = 'Create Karyawan';
-$this->params['breadcrumbs'][] = ['label' => 'Karyawans', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Karyawan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feature-menu">
