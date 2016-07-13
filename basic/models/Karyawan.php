@@ -57,8 +57,9 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             [['jenis_kelamin'], 'string', 'length' => 1],
             [['email', 'status_pernikahan', 'status_karyawan'], 'string', 'max' => 50],
             [['file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip'], 'string', 'max' => 255],
-            [['file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip', 'jabatan'], 'default', 'value' => null],
-            [['gaji', 'no_lokasi'], 'default', 'value' => 0]
+            [['file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip', 'jabatan'], 'default', 'value' => ''],
+            [['no_lokasi'], 'default', 'value' => 0],
+            [['gaji'], 'default', 'value' => 12]
         ];
     }
 

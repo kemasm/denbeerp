@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tanggal_lahir')->textInput() ?>
+    <?= $form->field($model, 'tanggal_lahir')->input('date', ['placeholder' => '01-01-2016', 'class' => "form-control date-field"]) ?>
 
     <?= $form->field($model, 'tempat_lahir')->textInput(['maxlength' => true]) ?>
 
@@ -37,9 +37,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status_pernikahan')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status_pernikahan')->dropDownList(['k' => 'kawin', 'bk' => 'belum kawin']) ?>
 
-    <?= $form->field($model, 'tanggal_masuk')->textInput() ?>
+    <?= $form->field($model, 'tanggal_masuk')->input('date', ['placeholder' => '01-01-2016', 'class' => "form-control date-field"]) ?>
 
     <?= $form->field($model, 'file_ktp')->textInput(['maxlength' => true]) ?>
 
@@ -53,7 +53,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'file_transkrip')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status_karyawan')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status_karyawan')->dropDownList(['1' => 'aktif', '0' => 'tidak aktif', '2' => 'cuti']) ?>
 
     <?= $form->field($model, 'sisa_cuti')->textInput() ?>
 
