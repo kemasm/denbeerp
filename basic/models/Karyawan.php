@@ -50,6 +50,16 @@ use Yii;
 class Karyawan extends \yii\db\ActiveRecord
 {
     /**
+    * @UploadedFile
+    */
+    public $ktp;
+    public $npwp;
+    public $npjs;
+    public $cv;
+    public $transkrip;
+    public $ijazah;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -68,6 +78,7 @@ class Karyawan extends \yii\db\ActiveRecord
             [['sisa_cuti', 'gaji', 'no_lokasi'], 'integer'],
             [['nik'], 'string', 'length' => 6],
             [['nama', 'email', 'status_pernikahan', 'status_karyawan'], 'string', 'max' => 50],
+            [['ktp', 'npwp', 'bpjs', 'cv', 'ijazah', 'transkrip'], 'file','skipOnEmpty' => true, 'extensions' => 'pdf'],
             [['password', 'file_ktp', 'file_npwp', 'file_bpjs', 'file_cv', 'file_ijazah', 'file_transkrip'], 'string', 'max' => 255],
             [['tempat_lahir', 'no_identitas', 'jabatan'], 'string', 'max' => 20],
             [['jenis_kelamin'], 'string', 'max' => 1],

@@ -12,6 +12,9 @@ use app\models\Cuti;
  */
 class CutiSearch extends Cuti
 {
+    public $karyawan;
+    public $penyetuju;
+
     /**
      * @inheritdoc
      */
@@ -20,6 +23,7 @@ class CutiSearch extends Cuti
         return [
             [['id_cuti'], 'integer'],
             [['nik', 'tanggal_awal', 'tanggal_akhir', 'nik_penyetuju', 'keterangan'], 'safe'],
+            [['karyawan', 'penyetuju'], 'safe'],
         ];
     }
 
@@ -45,9 +49,21 @@ class CutiSearch extends Cuti
 
         // add conditions that should always apply here
 
+        $query -> joinWith(['karyawan a', 'penyetuju b']);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['karyawan'] = [
+            'asc' => ['a.nama' => SORT_ASC],
+            'desc' => ['a.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['penyetuju'] = [
+            'asc' => ['b.nama' => SORT_ASC],
+            'desc' => ['b.nama' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -66,7 +82,9 @@ class CutiSearch extends Cuti
 
         $query->andFilterWhere(['like', 'nik', $this->nik])
             ->andFilterWhere(['like', 'nik_penyetuju', $this->nik_penyetuju])
-            ->andFilterWhere(['like', 'keterangan', $this->keterangan]);
+            ->andFilterWhere(['like', 'keterangan', $this->keterangan])
+            ->andFilterWhere(['like', 'karyawan.nama', $this->karyawan])
+            ->andFilterWhere(['like', 'karyawan.nama', $this->penyetuju]);
 
         return $dataProvider;
     }

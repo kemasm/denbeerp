@@ -38,7 +38,7 @@ $listLokasi = ArrayHelper::map($lokasis, 'no_lokasi', 'nama_lokasi');
 
     <?= $form->field($model, 'tanggal_masuk')->input('date', ['placeholder' => '01-01-2016', 'class' => "form-control date-field"]) ?>
 
-    <?= $form->field($model, 'file_ktp')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ktp')->fileInput() ?>
 
     <?= $form->field($model, 'file_npwp')->textInput(['maxlength' => true]) ?>
 
