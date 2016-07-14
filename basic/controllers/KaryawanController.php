@@ -69,6 +69,7 @@ class KaryawanController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             $model->ktp = UploadedFile::getInstance($model, 'ktp');
+            //dd($model);
             
             if($model->upload()){
 

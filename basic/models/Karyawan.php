@@ -257,9 +257,13 @@ class Karyawan extends \yii\db\ActiveRecord
 
         if($this->validate()){
             
-            $this->file_ktp = 'uploads/ktp/'.$this->nik.'.pdf';
-            $this->ktp->saveAs($this->file_ktp);
-            $this->ktp = null;
+            if($this->ktp){
+
+                $this->file_ktp = 'uploads/ktp/'.$this->nik.'.pdf';
+                $this->ktp->saveAs($this->file_ktp);
+                $this->ktp = null;
+
+            }
 
             return true;
 
