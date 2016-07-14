@@ -69,12 +69,13 @@ class KaryawanController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             $model->ktp = UploadedFile::getInstance($model, 'ktp');
-            $model->file_ktp = 'uploads/ktp/'.$model->nik.'.pdf';
-            $model->ktp->saveAs($model->file_ktp);
+            
+            if($model->upload()){
 
-            $model->save(false);
+                $model->save();
 
-            return $this->redirect(['view', 'id' => $model->nik]);
+                return $this->redirect(['view', 'id' => $model->nik]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,

@@ -252,4 +252,17 @@ class Karyawan extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UpdateKaryawan::className(), ['nik' => 'nik']);
     }
+
+    public function upload(){
+
+        if($this->validate()){
+            
+            $this->file_ktp = 'uploads/ktp/'.$this->nik.'.pdf';
+            $this->ktp->saveAs($this->file_ktp);
+            $this->ktp = null;
+
+            return true;
+
+        } else return false;
+    }
 }
