@@ -57,7 +57,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sisa_cuti')->textInput() ?>
 
-    <?= $form->field($model, 'jabatan')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'jabatan')->dropDownList(['biasa'=>'biasa','manager'=>'manager']) ?>
+    <!-- <?= $form->field($model, 'jabatan')->textInput(['maxlength' => true]) ?> -->
 
     <?= $form->field($model, 'no_lokasi')->textInput() ?>
 

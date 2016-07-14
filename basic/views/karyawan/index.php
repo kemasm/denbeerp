@@ -29,14 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\CheckboxColumn'],
 
-                'nik',
+                // 'nik',
                 'nama',
                 //'password',
-                'tanggal_lahir',
+                // 'tanggal_lahir',
                 //'tempat_lahir',
-                'no_identitas',
-                // 'jenis_kelamin',
-                // 'email:email',
+                // 'no_identitas',
+                'jenis_kelamin',
+                'email:email',
                 // 'status_pernikahan',
                 // 'tanggal_masuk',
                 // 'file_ktp',
@@ -47,9 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'file_transkrip',
                 // 'status_karyawan',
                 // 'sisa_cuti',
-                // 'jabatan',
+                'jabatan',
                 // 'gaji',
-                // 'no_lokasi',
+                'no_lokasi',
 
                 ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update}']
