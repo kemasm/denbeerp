@@ -40,15 +40,15 @@ $listLokasi = ArrayHelper::map($lokasis, 'no_lokasi', 'nama_lokasi');
 
     <?= $form->field($model, 'ktp')->fileInput() ?>
 
-    <?= $form->field($model, 'file_npwp')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'npwp')->fileInput() ?>
 
     <?= $form->field($model, 'bpjs')->fileInput() ?>
 
-    <?= $form->field($model, 'file_cv')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cv')->fileInput() ?>
 
-    <?= $form->field($model, 'file_ijazah')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ijazah')->fileInput() ?>
 
-    <?= $form->field($model, 'file_transkrip')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'transkrip')->fileInput() ?>
 
     <?= $form->field($model, 'status_karyawan')->dropDownList(['aktif' => 'aktif', 'cuti' => 'cuti', 'keluar' => 'keluar']) ?>
 

@@ -265,11 +265,43 @@ class Karyawan extends \yii\db\ActiveRecord
 
             }
 
+            if($this->npwp){
+
+                $this->file_npwp = 'uploads/npwp/'.$this->nik.'.pdf';
+                $this->npwp->saveAs($this->file_npwp);
+                $this->npwp = null;
+
+            }
+
             if($this->bpjs){
 
                 $this->file_bpjs = 'uploads/bpjs/'.$this->nik.'.pdf';
                 $this->bpjs->saveAs($this->file_bpjs);
                 $this->bpjs = null;
+
+            }
+
+            if($this->cv){
+
+                $this->file_cv = 'uploads/cv/'.$this->nik.'.pdf';
+                $this->cv->saveAs($this->file_cv);
+                $this->cv = null;
+
+            }
+
+            if($this->transkrip){
+
+                $this->file_transkrip = 'uploads/transkrip/'.$this->nik.'.pdf';
+                $this->transkrip->saveAs($this->file_transkrip);
+                $this->transkrip = null;
+
+            }
+
+            if($this->ijazah){
+
+                $this->file_ijazah = 'uploads/ijazah/'.$this->nik.'.pdf';
+                $this->ijazah->saveAs($this->file_ijazah);
+                $this->ijazah = null;
 
             }
 
