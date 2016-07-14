@@ -16,7 +16,16 @@ $listLokasi = ArrayHelper::map($lokasis, 'no_lokasi', 'nama_lokasi');
 
 <div class="karyawan-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+            'fieldConfig' => [
+                'template' => 
+                    "<div class=\"row\">
+                        <div class=\"col-xs-3 form-label\">{label}</div>\n
+                        <div class=\"col-xs-9\">{input}</div>\n
+                        {error}
+                    </div>",
+            ],            
+        ]); ?>
 
     <?= $form->field($model, 'nik')->textInput(['maxlength' => true]) ?>
 
@@ -60,7 +69,7 @@ $listLokasi = ArrayHelper::map($lokasis, 'no_lokasi', 'nama_lokasi');
 
     <?= $form->field($model, 'no_lokasi')->dropDownList($listLokasi) ?>
 
-    <div class="form-group">
+    <div class="form-group col-xs-offset-3 btn-create">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 

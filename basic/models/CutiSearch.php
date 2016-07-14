@@ -83,8 +83,8 @@ class CutiSearch extends Cuti
         $query->andFilterWhere(['like', 'nik', $this->nik])
             ->andFilterWhere(['like', 'nik_penyetuju', $this->nik_penyetuju])
             ->andFilterWhere(['like', 'keterangan', $this->keterangan])
-            ->andFilterWhere(['like', 'karyawan.nama', $this->karyawan])
-            ->andFilterWhere(['like', 'karyawan.nama', $this->penyetuju]);
+            ->andFilterWhere(['like', 'a.nama', $this->karyawan])
+            ->andFilterWhere(['like', 'b.nama', $this->penyetuju]);
 
         return $dataProvider;
     }

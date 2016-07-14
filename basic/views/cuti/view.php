@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 'id_cuti',
-                'nik',
+                //'nik',
+                [
+                'attribute' => 'karyawan',
+                'value' => $model->karyawan->nama
+                ],
                 'tanggal_awal',
                 'tanggal_akhir',
                 'nik_penyetuju',

@@ -1,3 +1,4 @@
+
 <?php
 
 use yii\helpers\Html;
@@ -10,6 +11,7 @@ use yii\web\Controller;
 
 $this->title = 'Cuti';
 $this->params['breadcrumbs'][] = $this->title;
+//dd(Yii::$app->user->identity->nama);
 ?>
 <div class="feature-menu">
     <div class="list-group">
