@@ -59,7 +59,7 @@ class Karyawan extends \yii\db\ActiveRecord
     public $transkrip;
     public $ijazah;
 
-    /**
+    /**s
      * @inheritdoc
      */
     public static function tableName()
@@ -262,6 +262,14 @@ class Karyawan extends \yii\db\ActiveRecord
                 $this->file_ktp = 'uploads/ktp/'.$this->nik.'.pdf';
                 $this->ktp->saveAs($this->file_ktp);
                 $this->ktp = null;
+
+            }
+
+            if($this->bpjs){
+
+                $this->file_bpjs = 'uploads/bpjs/'.$this->nik.'.pdf';
+                $this->bpjs->saveAs($this->file_bpjs);
+                $this->bpjs = null;
 
             }
 

@@ -42,7 +42,7 @@ $listLokasi = ArrayHelper::map($lokasis, 'no_lokasi', 'nama_lokasi');
 
     <?= $form->field($model, 'file_npwp')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'file_bpjs')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'bpjs')->fileInput() ?>
 
     <?= $form->field($model, 'file_cv')->textInput(['maxlength' => true]) ?>
 
