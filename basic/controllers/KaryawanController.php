@@ -8,6 +8,7 @@ use app\models\KaryawanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * KaryawanController implements the CRUD actions for Karyawan model.
@@ -65,8 +66,23 @@ class KaryawanController extends Controller
     {
         $model = new Karyawan();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->nik]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->ktp = UploadedFile::getInstance($model, 'ktp');
+            $model->npwp = UploadedFile::getInstance($model, 'npwp');
+            $model->bpjs = UploadedFile::getInstance($model, 'bpjs');
+            $model->cv = UploadedFile::getInstance($model, 'cv');
+            $model->transkrip = UploadedFile::getInstance($model, 'transkrip');
+            $model->ijazah = UploadedFile::getInstance($model, 'ijazah');
+
+            //dd($model);
+            
+            if($model->upload()){
+
+                $model->save();
+
+                return $this->redirect(['view', 'id' => $model->nik]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,

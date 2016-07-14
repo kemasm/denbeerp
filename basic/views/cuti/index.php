@@ -28,15 +28,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'columns' => [
-                ['class' => 'yii\grid\CheckboxColumn'],
-
-                'id_cuti',
-                'nik',
+                'id_cuti', 
+                //'nik', 
+                [
+                'attribute' => 'karyawan',
+                'value' => 'karyawan.nama'
+                ],
                 'tanggal_awal',
                 'tanggal_akhir',
-                'nik_penyetuju',
+                //'nik_penyetuju', 
+                [
+                'attribute' => 'penyetuju',
+                'value' => 'penyetuju.nama'
+                ],
                 // 'keterangan',
-
                 ['class' => 'yii\grid\ActionColumn'],
             ],
             'tableOptions' => [

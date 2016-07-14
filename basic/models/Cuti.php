@@ -72,6 +72,16 @@ class Cuti extends \yii\db\ActiveRecord
         return $this->hasOne(Karyawan::className(), ['nik' => 'nik_penyetuju']);
     }
 
+    public function getKaryawan()
+    {
+        return $this->hasOne(Karyawan::className(), ['nik' => 'nik']);
+    }
+
+    public function getPenyetuju()
+    {
+        return $this->hasOne(Karyawan::className(), ['nik' => 'nik_penyetuju']);
+    }    
+
     public function beforeSave($insert = true) {
         if ($insert){
             $this->nik = Yii::$app->user->id;
