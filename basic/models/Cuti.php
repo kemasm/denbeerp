@@ -38,6 +38,7 @@ class Cuti extends \yii\db\ActiveRecord
             [['keterangan'], 'string', 'max' => 50],
             [['nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik' => 'nik']],
             [['nik_penyetuju'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik_penyetuju' => 'nik']],
+            [['nik_admin'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik_admin' => 'nik']],
         ];
     }
 
@@ -53,6 +54,7 @@ class Cuti extends \yii\db\ActiveRecord
             'tanggal_akhir' => 'Tanggal Akhir',
             'nik_penyetuju' => 'NIK Penyetuju',
             'keterangan' => 'Keterangan',
+            'nik_admin' => 'NIK Admin',
         ];
     }
 
@@ -80,7 +82,11 @@ class Cuti extends \yii\db\ActiveRecord
     public function getPenyetuju()
     {
         return $this->hasOne(Karyawan::className(), ['nik' => 'nik_penyetuju']);
-    }    
+    } 
+
+    public function getAdmin(){
+        return $this->hasOne(Karyawan::className(), ['nik' => 'nik_admin']);
+    }   
 
     public function beforeSave($insert = true) {
         if ($insert){
