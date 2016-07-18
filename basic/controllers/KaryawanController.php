@@ -100,8 +100,23 @@ class KaryawanController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->nik]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->ktp = UploadedFile::getInstance($model, 'ktp');
+            $model->npwp = UploadedFile::getInstance($model, 'npwp');
+            $model->bpjs = UploadedFile::getInstance($model, 'bpjs');
+            $model->cv = UploadedFile::getInstance($model, 'cv');
+            $model->transkrip = UploadedFile::getInstance($model, 'transkrip');
+            $model->ijazah = UploadedFile::getInstance($model, 'ijazah');
+
+            //dd($model);
+            
+            if($model->upload()){
+
+                $model->save();
+
+                return $this->redirect(['view', 'id' => $model->nik]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
