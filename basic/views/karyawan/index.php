@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'tanggal_lahir',
                 //'tempat_lahir',
                 // 'no_identitas',
-                'jenis_kelamin',
+                // 'jenis_kelamin',
                 'email:email',
                 // 'status_pernikahan',
                 // 'tanggal_masuk',
@@ -45,11 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'file_cv',
                 // 'file_ijazah',
                 // 'file_transkrip',
-                // 'status_karyawan',
                 // 'sisa_cuti',
                 'jabatan',
                 // 'gaji',
                 'no_lokasi',
+                'status_karyawan',
 
                 ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update}']

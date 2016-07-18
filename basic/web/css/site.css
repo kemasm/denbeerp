@@ -96,7 +96,7 @@ a.desc:after {
 .navbar{
     vertical-align: middle;
     min-height: 65px;
-    background: #ff5722;
+    background: black;
     color: white;
     border:0;
     box-shadow: 0px 5px 3px 0.25px rgba(0, 0, 0, 0.15);
@@ -168,45 +168,6 @@ a { color:inherit; }
 
 .site-index .module .module-text{
     font-size: 0.9em;
-}
-
-.sidebar{
-    position: absolute;
-    left: 0px;
-    height: 100%;
-    width: 0px;
-    overflow-y: hidden;
-    background: white;
-    -webkit-transition: .7s ease;
-            transition: .7s ease;
-}
-.sidebar .list-group-item{
-    border: 0;
-}
-.sidebar .list-group-item:hover{
-    background: #eee;
-}
-
-
-/*when sidebar is displayed*/
-.displayed-general-sidebar .site-index,
-.displayed-hr-sidebar .site-index,
-.displayed-procurement-sidebar .site-index,
-.displayed-marketing-sidebar .site-index,
-.displayed-fixed-asset-sidebar .site-index,
-.displayed-gl-sidebar .site-index
-{
-    padding-left: 200px;
-}
-
-.displayed-general-sidebar      #general-sidebar,
-.displayed-hr-sidebar           #hr-sidebar,
-.displayed-procurement-sidebar  #procurement-sidebar,
-.displayed-marketing-sidebar    #marketing-sidebar,
-.displayed-fixed-asset-sidebar  #fixed-asset-sidebar,
-.displayed-gl-sidebar           #gl-sidebar
-{
-    width: 200px;
 }
 
 /*used at general/index*/
@@ -291,7 +252,7 @@ a { color:inherit; }
 
 .cuti-view, .karyawan-view{
     max-width: 800px;
-    width: 100%;
+    width: 100%;d
 }
 
 .table{
@@ -373,4 +334,46 @@ p .btn {
     font-weight: 300;
     line-height: 30px;
     /* more styling for the icon, including color, font-size, positioning, etc. */
+}
+
+/*Sidebar*/
+.sidebar .list-group{
+    margin-bottom: 0px;
+    background: #ff5722;
+}
+
+.sidebar .list-group-item{
+    padding-left: 10px;
+}
+
+.sidebar{
+    position: absolute;
+    left: 0px;
+    min-height: 90%;
+    width: 200px;
+    background: #444 ;
+    -webkit-transition: .7s ease;
+            transition: .7s ease;
+}
+.sidebar .list-group-item{
+    background: #444 ;
+    color: white;
+    border: 0;
+    border-radius: 0;
+}
+
+.list-group-item.active{
+    color: white;
+    background: #ff5722;
+}
+
+.sidebar .list-group-item:hover,
+.sidebar .list-group-item:focus{
+    color: white;
+    background: #ff5722;
+}
+
+
+.sidebar-items{
+    text-indent: 10px;
 }
