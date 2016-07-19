@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->nik;
 $this->params['breadcrumbs'][] = ['label' => 'Karyawans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['item']='karyawan';
 ?>
 <div class="karyawan-view">
 

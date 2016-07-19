@@ -9,6 +9,7 @@ $this->title = 'Update Karyawan: ' . $model->nik;
 $this->params['breadcrumbs'][] = ['label' => 'Karyawans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->nik, 'url' => ['view', 'id' => $model->nik]];
 $this->params['breadcrumbs'][] = 'Update';
+$this->params['item']='karyawan';
 ?>
 <div class="karyawan-update">
 
