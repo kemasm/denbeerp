@@ -9,17 +9,8 @@ use yii\widgets\DetailView;
 $this->title = 'View Cuti '.$model->id_cuti;
 $this->params['breadcrumbs'][] = ['label' => 'Cuti', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['item'] = 'cuti';
 ?>
-
-<div class="feature-menu">
-    <div class="list-group">
-        <?= Html::a('Hutang', ['hutang/index'], ['class' => 'list-group-item']) ?>
-        <?= Html::a('Cuti', ['cuti/index'], ['class' => 'list-group-item active']) ?>
-        <a href="#" class="list-group-item">Jadwal Libur</a>
-        <a href="#" class="list-group-item">Slip Gaji</a>
-    </div>
-</div>
-
 <div class="cuti-view">
     <div class="box">
         <h1><?= Html::encode($this->title) ?></h1>

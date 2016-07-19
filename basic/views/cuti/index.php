@@ -11,16 +11,9 @@ use yii\web\Controller;
 
 $this->title = 'Cuti';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['item'] = 'cuti';
 //dd(Yii::$app->user->identity->nama);
 ?>
-<div class="feature-menu">
-    <div class="list-group">
-        <?= Html::a('Hutang', ['hutang/index'], ['class' => 'list-group-item']) ?>
-        <?= Html::a('Cuti', ['cuti/index'], ['class' => 'list-group-item active']) ?>
-        <a href="#" class="list-group-item">Jadwal Libur</a>
-        <a href="#" class="list-group-item">Slip Gaji</a>
-    </div>
-</div>
 <div class="cuti-index">
     <div class="box">
         <h1><?= Html::encode($this->title) ?></h1>
