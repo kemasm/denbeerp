@@ -162,10 +162,14 @@ class CutiController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
+            $jabatan = Yii::$app->user->identity->jabatan;
+            //dd($jabatan);
+            if($jabatan == 'admin' || $jabatan == 'manager' || Yii::$app->user->id == $model->nik){
 
-            $model->approval();
+                $model->approval();
 
-            $model->save();
+                $model->save();
+            }
 
             return $this->redirect(['view', 'id' => $model->id_cuti]);
         } else {
