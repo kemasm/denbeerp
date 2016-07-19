@@ -44,7 +44,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'penyetuju.nama'
                 ],
                 // 'keterangan',
-                ['class' => 'yii\grid\ActionColumn'],
+                [
+                'attribute' => 'admin',
+                'value' => 'admin.nama'
+                ],
+                'status',
+                ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update}'],
             ],
             'tableOptions' => [
                 'class' => 'table'

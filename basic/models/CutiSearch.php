@@ -14,6 +14,8 @@ class CutiSearch extends Cuti
 {
     public $karyawan;
     public $penyetuju;
+    public $admin;
+    public $status;
 
     /**
      * @inheritdoc
@@ -22,8 +24,8 @@ class CutiSearch extends Cuti
     {
         return [
             [['id_cuti'], 'integer'],
-            [['nik', 'tanggal_awal', 'tanggal_akhir', 'nik_penyetuju', 'keterangan'], 'safe'],
-            [['karyawan', 'penyetuju'], 'safe'],
+            [['nik', 'tanggal_awal', 'tanggal_akhir', 'nik_penyetuju', 'keterangan', 'nik_admin'], 'safe'],
+            [['karyawan', 'penyetuju', 'admin', 'status'], 'safe'],
         ];
     }
 
@@ -49,7 +51,7 @@ class CutiSearch extends Cuti
 
         // add conditions that should always apply here
 
-        $query -> joinWith(['karyawan a', 'penyetuju b']);
+        $query -> joinWith(['karyawan a', 'penyetuju b', 'admin c']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -65,6 +67,11 @@ class CutiSearch extends Cuti
             'desc' => ['b.nama' => SORT_DESC],
         ];
 
+        $dataProvider->sort->attributes['admin'] = [
+            'asc' => ['c.nama' => SORT_ASC],
+            'desc' => ['c.nama' => SORT_DESC],
+        ];
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -74,18 +81,48 @@ class CutiSearch extends Cuti
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id_cuti' => $this->id_cuti,
-            'tanggal_awal' => $this->tanggal_awal,
-            'tanggal_akhir' => $this->tanggal_akhir,
-        ]);
+        if(Yii::$app->user->identity->jabatan == 'admin' || Yii::$app->user->identity->jabatan == 'manager'){ 
+            //dd($this->status); 
+            $query->andFilterWhere([
+                'id_cuti' => $this->id_cuti,
+                'tanggal_awal' => $this->tanggal_awal,
+                'tanggal_akhir' => $this->tanggal_akhir,
+            ]);
 
-        $query->andFilterWhere(['like', 'nik', $this->nik])
-            ->andFilterWhere(['like', 'nik_penyetuju', $this->nik_penyetuju])
-            ->andFilterWhere(['like', 'keterangan', $this->keterangan])
-            ->andFilterWhere(['like', 'a.nama', $this->karyawan])
-            ->andFilterWhere(['like', 'b.nama', $this->penyetuju]);
+            $query->andFilterWhere(['like', 'nik', $this->nik])
+                ->andFilterWhere(['like', 'nik_penyetuju', $this->nik_penyetuju])
+                ->andFilterWhere(['like', 'keterangan', $this->keterangan])
+                ->andFilterWhere(['like', 'a.nama', $this->karyawan])
+                ->andFilterWhere(['like', 'b.nama', $this->penyetuju])
+                ->andFilterWhere(['like', 'c.nama', $this->admin]);
 
-        return $dataProvider;
+            //dd($this->status == '1');
+            if($this->status == '1'){
+                $query->andWhere(['not', ['nik_penyetuju' => null]])
+                    ->andWhere(['not', ['nik_admin' => null]]);
+            }else if($this->status == '0'){
+                $query->andWhere(['nik_penyetuju' => null],['nik_admin' => null]);
+            }
+
+            return $dataProvider;
+        } else {
+            $query->andFilterWhere([
+                'id_cuti' => $this->id_cuti,
+                'tanggal_awal' => $this->tanggal_awal,
+                'tanggal_akhir' => $this->tanggal_akhir,
+                'cuti.nik' => Yii::$app->user->identity->nik,
+            ]);
+
+            $query->andFilterWhere(['like', 'nik', $this->nik])
+                ->andFilterWhere(['like', 'nik_penyetuju', $this->nik_penyetuju])
+                ->andFilterWhere(['like', 'keterangan', $this->keterangan])
+                ->andFilterWhere(['like', 'a.nama', $this->karyawan])
+                ->andFilterWhere(['like', 'b.nama', $this->penyetuju])
+                ->andFilterWhere(['like', 'c.nama', $this->admin]);
+
+            return $dataProvider;
+        }
+
+        
     }
 }

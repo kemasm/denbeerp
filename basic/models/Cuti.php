@@ -38,6 +38,7 @@ class Cuti extends \yii\db\ActiveRecord
             [['keterangan'], 'string', 'max' => 50],
             [['nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik' => 'nik']],
             [['nik_penyetuju'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik_penyetuju' => 'nik']],
+            [['nik_admin'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik_admin' => 'nik']],
         ];
     }
 
@@ -53,6 +54,7 @@ class Cuti extends \yii\db\ActiveRecord
             'tanggal_akhir' => 'Tanggal Akhir',
             'nik_penyetuju' => 'NIK Penyetuju',
             'keterangan' => 'Keterangan',
+            'nik_admin' => 'NIK Admin',
         ];
     }
 
@@ -80,12 +82,46 @@ class Cuti extends \yii\db\ActiveRecord
     public function getPenyetuju()
     {
         return $this->hasOne(Karyawan::className(), ['nik' => 'nik_penyetuju']);
-    }    
+    } 
+
+    public function getAdmin(){
+        return $this->hasOne(Karyawan::className(), ['nik' => 'nik_admin']);
+    } 
+
+    public function getStatus(){
+        if($this->nik_admin && $this->nik_penyetuju){
+            return 1;
+        }else return 0;
+    }  
 
     public function beforeSave($insert = true) {
         if ($insert){
             $this->nik = Yii::$app->user->id;
         } 
         return parent::beforeSave($insert);
+    }
+
+    public function approval(){
+        //dd(Yii::$app->user->id != $this->nik_admin && $this->nik_admin);
+        if(Yii::$app->user->identity->jabatan == 'admin'){
+            if(Yii::$app->user->id != $this->nik_admin && $this->nik_admin){
+                $this->nik_penyetuju = Yii::$app->user->id;
+            }
+            $this->nik_admin = Yii::$app->user->id;
+        } else if(Yii::$app->user->identity->jabatan == 'manager'){
+            if($this->nik == Yii::$app->user->identity->nik){
+                $this->resetApproval();
+            } else {
+                $this->nik_penyetuju = Yii::$app->user->id;   
+            }
+        } else {
+            $this->resetApproval();
+        }
+        return;
+    }
+
+    public function resetApproval(){
+        $this->nik_admin = null;
+        $this->nik_penyetuju = null;
     }
 }
