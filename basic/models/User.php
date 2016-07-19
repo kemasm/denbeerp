@@ -9,6 +9,10 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public $password;
     public $authKey;
     public $accessToken;
+    const JABATAN_USER = 'karyawan';
+    const JABATAN_HRD = 'hrd';
+    const JABATAN_ADMIN = 'admin';
+    const JABATAN_MANAGER = 'manager';
 
     private static $users = [
         '100' => [

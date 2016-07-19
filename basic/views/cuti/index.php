@@ -48,7 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'admin',
                 'value' => 'admin.nama'
                 ],
-                ['class' => 'yii\grid\ActionColumn'],
+                'status',
+                ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update}'],
             ],
             'tableOptions' => [
                 'class' => 'table'

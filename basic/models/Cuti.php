@@ -86,12 +86,42 @@ class Cuti extends \yii\db\ActiveRecord
 
     public function getAdmin(){
         return $this->hasOne(Karyawan::className(), ['nik' => 'nik_admin']);
-    }   
+    } 
+
+    public function getStatus(){
+        if($this->nik_admin && $this->nik_penyetuju){
+            return 1;
+        }else return 0;
+    }  
 
     public function beforeSave($insert = true) {
         if ($insert){
             $this->nik = Yii::$app->user->id;
         } 
         return parent::beforeSave($insert);
+    }
+
+    public function approval(){
+        //dd(Yii::$app->user->id != $this->nik_admin && $this->nik_admin);
+        if(Yii::$app->user->identity->jabatan == 'admin'){
+            if(Yii::$app->user->id != $this->nik_admin && $this->nik_admin){
+                $this->nik_penyetuju = Yii::$app->user->id;
+            }
+            $this->nik_admin = Yii::$app->user->id;
+        } else if(Yii::$app->user->identity->jabatan == 'manager'){
+            if($this->nik == Yii::$app->user->identity->nik){
+                $this->resetApproval();
+            } else {
+                $this->nik_penyetuju = Yii::$app->user->id;   
+            }
+        } else {
+            $this->resetApproval();
+        }
+        return;
+    }
+
+    public function resetApproval(){
+        $this->nik_admin = null;
+        $this->nik_penyetuju = null;
     }
 }

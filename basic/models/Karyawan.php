@@ -295,6 +295,10 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return $this->hasMany(UpdateKaryawan::className(), ['nik' => 'nik']);
     }
 
+    public function getRole(){
+        return $this->jabatan;
+    }
+
     public function upload(){
 
         if($this->validate()){
