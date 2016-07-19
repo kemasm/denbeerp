@@ -4,9 +4,11 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use kartik\sidenav\SideNav;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -55,19 +57,86 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-    <div class="container">
-        <?= $content ?>
+    <div class="sidebar">
+        <?=SideNav::widget([
+                'type' => SideNav::TYPE_DEFAULT,
+                'iconPrefix' => 'fa ',
+                'items' => [
+                    [
+                        'label' => 'General',
+                        'icon' => 'fa-tasks',
+                        'items' => [
+                            ['label' => 'Hutang', 'icon'=>'fa-info','url'=>Url::to(['hutang/index']),'active'=>($this->params['item'] == 'hutang')],
+                            ['label' => 'Cuti', 'icon'=>'fa-phone','url'=>Url::to(['cuti/index']),'active'=>($this->params['item'] == 'cuti')],
+                        ],
+                    ],
+                    [
+                        'label' => 'HR',
+                        'icon' => 'fa-user',
+                        'items' => [
+                            ['label' => 'Karyawan', 'icon'=>'fa-info','url'=>Url::to(['karyawan/index']),'active'=>($this->params['item'] == 'karyawan')],
+                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
+                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                        ],
+                    ],
+                    [
+                        'label' => 'Procurement',
+                        'icon' => 'fa-credit-card-alt',
+                        'items' => [
+                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
+                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                        ],
+                    ],
+                    [
+                        'label' => 'Marketing',
+                        'icon' => 'fa-line-chart',
+                        'items' => [
+                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
+                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                        ],
+                    ],
+                    [
+                        'label' => 'Fixed Asset',
+                        'icon' => 'fa-archive',
+                        'items' => [
+                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
+                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                        ],
+                    ],
+                    [
+                        'label' => 'GL',
+                        'icon' => 'fa-book',
+                        'items' => [
+                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
+                            ['label' => 'Contact', 'icon'=>'fa-phone', 'items' =>
+                                [
+                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
+                                ]
+                            ],
+                        ],
+                    ],
+                ],
+            ]);
+         ?>    
+    </div>
+    <div class="content-wrapper">
+        <div class="container">
+            <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+            <?= $content ?>
+        </div>
     </div>
 </div>
 
-<footer class="footer">
+<!-- <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-
+ -->
 <?php $this->endBody() ?>
 </body>
 </html>
