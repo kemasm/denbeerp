@@ -12,7 +12,7 @@ body {
 
 .content-wrapper{
     position: absolute;
-    left: 200px;
+    left: 270px;
     right: 0px;
     background-color: #f5f5f5;
     min-height: 100%;
@@ -207,22 +207,6 @@ a { color:inherit; }
 }
 
 
-/*view cuti*/
-.feature-menu{
-    position: absolute;
-    width: 200px;
-    overflow-y: hidden;
-    box-shadow: 3px 5px 4px 0.25px rgba(0,0,0,0.15);
-}
-
-.feature-menu .list-group{
-    margin-bottom: 0px;
-}
-
-.feature-menu .list-group-item{
-    border:0px;
-}
-
 .form-label{
     text-align:right;
 }
@@ -282,16 +266,14 @@ p .btn {
     border-radius: 1px;
 }
 
-.box{
+.box {
     background-color: white;
     box-shadow: 3px 5px 4px 0.25px rgba(0,0,0,0.15);
-}
-
-.box {
     padding-left:20px;
     padding-right:20px;
     padding-bottom: 1px;
     margin-bottom: 20px;
+    max-width: 1000px;
 }
 
 .box h1{
@@ -340,7 +322,7 @@ p .btn {
     position: absolute;
     top: 65px;
     left: 0px;
-    width: 200px;
+    width: 270px;
     background: #333 ;
     -webkit-transition: .7s ease;
             transition: .7s ease;
@@ -360,10 +342,7 @@ a span.fa {
 }
 
 .nav>li>a{
-    padding-left: 0px;
-}
-
-.nav>li.active{
+    padding: 10px 30px;
 }
 
 .kv-sidenav .active > ul a {
@@ -380,19 +359,34 @@ a span.fa {
     color: white;
 }
 
+.nav-pills > li.active > a.kv-toggle, 
+.nav-pills > li.active > a.kv-toggle:hover{
+    background: #333;
+    color: #ff5722;
+}
+
 .nav-pills > li.active > a, 
-.nav-pills > li.active > a:hover, 
-.nav-pills > li.active > a:focus{
+.nav-pills > li.active > a:hover{
     background: #ff5722;
 }
 
-.nav > li > a:hover, .nav > li > a:focus{
-    color: #ff5722;
+.nav > li > a:hover{
+    color: white;
+    background: #ff5722; 
+}
+
+
+a:focus{
+    outline: none;
+}
+
+.nav > li > a:focus{
+    color: white;
     background: #333;
 }
 
 @media (min-width: 1200px) {
     .container {
-      width: 1100px;
+      width: 1000px;
     }
 }
