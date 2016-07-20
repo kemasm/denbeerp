@@ -47,7 +47,7 @@ class CutiController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['create', 'update', 'delete', 'view', 'index'],
+                'only' => ['create', 'update', 'delete', 'view', 'index', 'approve'],
                 'rules' => [
                     [
                         'actions' => ['index'],
@@ -98,6 +98,15 @@ class CutiController extends Controller
                         'allow' => true,
                         // Allow admins to delete
                         'roles' => [
+                            User::JABATAN_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' => ['approve'],
+                        'allow' => true,
+                        // Allow admins to delete
+                        'roles' => [
+                            User::JABATAN_MANAGER,
                             User::JABATAN_ADMIN
                         ],
                     ],
@@ -190,6 +199,21 @@ class CutiController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionApprove($id){
+        $model = $this->findModel($id);
+
+        $jabatan = Yii::$app->user->identity->jabatan;
+        //dd($jabatan);
+        if($jabatan == 'admin' || $jabatan == 'manager' || Yii::$app->user->id == $model->nik){
+
+            $model->approval();
+
+            $model->save();
+        }
+
+        return $this->redirect(['view', 'id' => $model->id_cuti]);
     }
 
     /**
