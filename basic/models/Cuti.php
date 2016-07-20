@@ -13,9 +13,13 @@ use Yii;
  * @property string $tanggal_akhir
  * @property string $nik_penyetuju
  * @property string $keterangan
+ * @property string $nik_admin
+ * @property string $penolak
  *
  * @property Karyawan $nik0
  * @property Karyawan $nikPenyetuju
+ * @property Karyawan $nikAdmin
+ * @property Karyawan $penolak0
  */
 class Cuti extends \yii\db\ActiveRecord
 {
@@ -34,11 +38,15 @@ class Cuti extends \yii\db\ActiveRecord
     {
         return [
             [['tanggal_awal', 'tanggal_akhir'], 'safe'],
-            [['nik', 'nik_penyetuju'], 'string', 'max' => 6],
+            [['nik', 'nik_penyetuju', 'nik_admin', 'penolak'], 'string', 'max' => 6],
             [['keterangan'], 'string', 'max' => 50],
             [['nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik' => 'nik']],
             [['nik_penyetuju'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik_penyetuju' => 'nik']],
             [['nik_admin'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik_admin' => 'nik']],
+            [['penolak'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['penolak' => 'nik']],
+            [['tanggal_akhir'], 'compare', 'compareAttribute' => 'tanggal_awal', 'operator' => '>='],
+            [['tanggal_awal'], 'compare', 'compareValue' => date('Y-m-d'), 'operator' => '>'],
+            ['tanggal_akhir', 'validateDates'],
         ];
     }
 
@@ -48,13 +56,14 @@ class Cuti extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_cuti' => 'ID Cuti',
-            'nik' => 'NIK',
+            'id_cuti' => 'Id Cuti',
+            'nik' => 'Nik',
             'tanggal_awal' => 'Tanggal Awal',
             'tanggal_akhir' => 'Tanggal Akhir',
-            'nik_penyetuju' => 'NIK Penyetuju',
+            'nik_penyetuju' => 'Nik Penyetuju',
             'keterangan' => 'Keterangan',
-            'nik_admin' => 'NIK Admin',
+            'nik_admin' => 'Nik Admin',
+            'penolak' => 'Penolak',
         ];
     }
 
@@ -84,14 +93,33 @@ class Cuti extends \yii\db\ActiveRecord
         return $this->hasOne(Karyawan::className(), ['nik' => 'nik_penyetuju']);
     } 
 
-    public function getAdmin(){
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdmin()
+    {
         return $this->hasOne(Karyawan::className(), ['nik' => 'nik_admin']);
-    } 
+    }
 
-    public function getStatus(){
-        if($this->nik_admin && $this->nik_penyetuju){
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenolak0()
+    {
+        return $this->hasOne(Karyawan::className(), ['nik' => 'penolak']);
+    }
+    
+    public function getStatus()
+    {
+        if($this->penolak)
+        {
+            return 2;
+        }
+        else if($this->nik_admin && $this->nik_penyetuju)
+        {
             return 1;
-        }else return 0;
+        }else 
+            return 0;
     }  
 
     public function beforeSave($insert = true) {
@@ -101,9 +129,13 @@ class Cuti extends \yii\db\ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    public function approval(){
+    public function approval()
+    {
         //dd(Yii::$app->user->id != $this->nik_admin && $this->nik_admin);
-        if(Yii::$app->user->identity->jabatan == 'admin'){
+        if($this->status == 2){
+            return;
+        }
+        else if(Yii::$app->user->identity->jabatan == 'admin'){
             if(Yii::$app->user->id != $this->nik_admin && $this->nik_admin){
                 $this->nik_penyetuju = Yii::$app->user->id;
             }
@@ -114,14 +146,27 @@ class Cuti extends \yii\db\ActiveRecord
             } else {
                 $this->nik_penyetuju = Yii::$app->user->id;   
             }
-        } else {
-            $this->resetApproval();
-        }
+        } 
         return;
+    }
+
+    public function disapproval()
+    {
+        if($this->status <> 1){
+            $this->penolak = Yii::$app->user->id;
+        }
+        //dd($this->penolak0);
     }
 
     public function resetApproval(){
         $this->nik_admin = null;
         $this->nik_penyetuju = null;
     }
+
+    public function validateDates() {
+        if(Yii::$app->user->identity->sisacuti - ((strtotime($this->tanggal_akhir) - strtotime($this->tanggal_awal))/60/60/24 + 1) < 0){
+            $this->addError('tanggal_akhir','Sisa Cuti tidak cukup');
+        }
+    }
 }
+

@@ -15,6 +15,8 @@ class CutiSearch extends Cuti
     public $karyawan;
     public $penyetuju;
     public $admin;
+    public $penolak0;
+
     public $status;
 
     /**
@@ -25,7 +27,7 @@ class CutiSearch extends Cuti
         return [
             [['id_cuti'], 'integer'],
             [['nik', 'tanggal_awal', 'tanggal_akhir', 'nik_penyetuju', 'keterangan', 'nik_admin'], 'safe'],
-            [['karyawan', 'penyetuju', 'admin', 'status'], 'safe'],
+            [['karyawan', 'penyetuju', 'admin', 'penolak0', 'status'], 'safe'],
         ];
     }
 
@@ -51,7 +53,7 @@ class CutiSearch extends Cuti
 
         // add conditions that should always apply here
 
-        $query -> joinWith(['karyawan a', 'penyetuju b', 'admin c']);
+        $query -> joinWith(['karyawan a', 'penyetuju b', 'admin c', 'penolak0 d']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -70,6 +72,11 @@ class CutiSearch extends Cuti
         $dataProvider->sort->attributes['admin'] = [
             'asc' => ['c.nama' => SORT_ASC],
             'desc' => ['c.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['penolak0'] = [
+            'asc' => ['d.nama' => SORT_ASC],
+            'desc' => ['d.nama' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -94,10 +101,14 @@ class CutiSearch extends Cuti
                 ->andFilterWhere(['like', 'keterangan', $this->keterangan])
                 ->andFilterWhere(['like', 'a.nama', $this->karyawan])
                 ->andFilterWhere(['like', 'b.nama', $this->penyetuju])
-                ->andFilterWhere(['like', 'c.nama', $this->admin]);
+                ->andFilterWhere(['like', 'c.nama', $this->admin])
+                ->andFilterWhere(['like', 'd.nama', $this->penolak0]);
 
             //dd($this->status == '1');
-            if($this->status == '1'){
+            if($this->status == '2'){
+                $query->andWhere(['not',['penolak0' => null]]);
+            }
+            else if($this->status == '1'){
                 $query->andWhere(['not', ['nik_penyetuju' => null]])
                     ->andWhere(['not', ['nik_admin' => null]]);
             }else if($this->status == '0'){
@@ -118,7 +129,19 @@ class CutiSearch extends Cuti
                 ->andFilterWhere(['like', 'keterangan', $this->keterangan])
                 ->andFilterWhere(['like', 'a.nama', $this->karyawan])
                 ->andFilterWhere(['like', 'b.nama', $this->penyetuju])
-                ->andFilterWhere(['like', 'c.nama', $this->admin]);
+                ->andFilterWhere(['like', 'c.nama', $this->admin])
+                ->andFilterWhere(['like', 'd.nama', $this->penolak0]);
+
+            //dd($this->status == '1');
+            if($this->status == '2'){
+                $query->andWhere(['not',['penolak0' => null]]);
+            }
+            else if($this->status == '1'){
+                $query->andWhere(['not', ['nik_penyetuju' => null]])
+                    ->andWhere(['not', ['nik_admin' => null]]);
+            }else if($this->status == '0'){
+                $query->andWhere(['nik_penyetuju' => null],['nik_admin' => null]);
+            }
 
             return $dataProvider;
         }

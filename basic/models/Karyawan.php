@@ -175,6 +175,18 @@ class Karyawan extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return $this->hasMany(Cuti::className(), ['nik' => 'nik']);
     }
 
+    public function getSisacuti()
+    {
+        $sisa = 12;
+        foreach ($this->cutis as $cuti) {
+            if(date('Y',strtotime($cuti->tanggal_awal)) == date("Y") && $cuti->status == 1){
+                $sisa -= ((strtotime($cuti->tanggal_akhir) - strtotime($cuti->tanggal_awal)) + 1);   
+            }
+        }
+
+        return $sisa;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -31,6 +31,7 @@ $this->params['item'] = 'cuti';
                 'nik_admin',
                 'keterangan',
                 'status',
+                'penolak',
             ],
             'options' => [
                 'class' => 'table detail-view'
@@ -48,5 +49,6 @@ $this->params['item'] = 'cuti';
             ],
         ]) ?>
         <?= Html::a('Approve', ['approve', 'id' => $model->id_cuti],['class' => 'btn btn-info']) ?>
+        <?= Html::a('Disapprove', ['disapprove', 'id' => $model->id_cuti],['class' => 'btn btn-info']) ?>
     </p>
 </div>

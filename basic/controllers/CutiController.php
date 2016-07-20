@@ -47,7 +47,7 @@ class CutiController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['create', 'update', 'delete', 'view', 'index', 'approve'],
+                'only' => ['create', 'update', 'delete', 'view', 'index', 'approve', 'disaprove'],
                 'rules' => [
                     [
                         'actions' => ['index'],
@@ -103,6 +103,15 @@ class CutiController extends Controller
                     ],
                     [
                         'actions' => ['approve'],
+                        'allow' => true,
+                        // Allow admins to delete
+                        'roles' => [
+                            User::JABATAN_MANAGER,
+                            User::JABATAN_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' => ['disapprove'],
                         'allow' => true,
                         // Allow admins to delete
                         'roles' => [
@@ -169,23 +178,22 @@ class CutiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $jabatan = Yii::$app->user->identity->jabatan;
 
-        if ($model->load(Yii::$app->request->post())) {
-            $jabatan = Yii::$app->user->identity->jabatan;
-            //dd($jabatan);
-            if($jabatan == 'admin' || $jabatan == 'manager' || Yii::$app->user->id == $model->nik){
-
-                $model->approval();
+        if($jabatan == 'admin' || Yii::$app->user->id == $model->nik)
+        {
+            if ($model->load(Yii::$app->request->post())) {
+                
+                $model->resetApproval();
 
                 $model->save();
+                return $this->redirect(['view', 'id' => $model->id_cuti]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
             }
-
-            return $this->redirect(['view', 'id' => $model->id_cuti]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+        } else return $this->redirect(['index']);
     }
 
     /**
@@ -203,10 +211,9 @@ class CutiController extends Controller
 
     public function actionApprove($id){
         $model = $this->findModel($id);
-
         $jabatan = Yii::$app->user->identity->jabatan;
         //dd($jabatan);
-        if($jabatan == 'admin' || $jabatan == 'manager' || Yii::$app->user->id == $model->nik){
+        if($jabatan == 'admin' || $jabatan == 'manager'){
 
             $model->approval();
 
@@ -214,6 +221,20 @@ class CutiController extends Controller
         }
 
         return $this->redirect(['view', 'id' => $model->id_cuti]);
+    }
+
+    public function actionDisapprove($id){
+        $model = $this->findModel($id);
+        $jabatan = Yii::$app->user->identity->jabatan;
+
+        if($jabatan == 'admin' || $jabatan == 'manager'){
+
+            $model->disapproval();
+
+            $model->save();
+        }
+
+        return $this->redirect(['view', 'id' => $model->id_cuti]);        
     }
 
     /**
