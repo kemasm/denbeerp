@@ -13,7 +13,7 @@ class m160715_095736_add_id_hutang_column_to_hutang extends Migration
     public function up()
     {
         $this->dropPrimaryKey('no_penyetujuan', 'hutang');
-        $this->alterColumn('hutang', 'no_penyetujuan', $this->string(255));
+        //$this->alterColumn('hutang', 'no_penyetujuan', $this->string(255));
         $this->addColumn('hutang', 'id', $this->primaryKey());
     }
 

@@ -11,6 +11,13 @@ use yii\web\View;
 
 $this->title = 'Login';
 ?>
+
+<style type="text/css">
+    .wrap{
+        background-color: #f5f5f5;
+    }
+</style>
+
 <div class="container">
     <!-- <div class="site-login">
         <h1><?= Html::encode($this->title) ?></h1>
