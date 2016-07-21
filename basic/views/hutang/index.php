@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -12,35 +11,55 @@ $this->title = 'Hutang';
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['item'] = 'hutang';
 ?>
-<!-- Sidebar -->        
 <div class="hutang-index">
-    <div class="box">
-        <h1><?= Html::encode($this->title) ?></h1>
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\CheckboxColumn'],
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                'no_penyetujuan',
-                'nik',
-                'jumlah',
-                'tanggal_pengajuan',
-                'jaminan',
-                // 'periode',
-                // 'file_surat_perjanjian',
-                // 'sisa_pokok',
-                // 'sisa_bunga',
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
 
-                ['class' => 'yii\grid\ActionColumn'],
+            //'no_penyetujuan',
+            'id',
+            //'nik',
+            [
+            'attribute' => 'nik0',
+            'label' => 'nama',
+            'value' => 'nik0.nama'
             ],
-            'tableOptions' => [
-                'class' => 'table'
-            ]
-        ]); ?>
-    </div>
+            'jumlah',
+            'tanggal_pengajuan',
+            //'jaminan',
+            //'periode',
+            // 'file_surat_perjanjian',
+            'status',
+            [
+            'attribute' => 'managerNik',
+            'label' => 'nama penyetuju 1',
+            'value' => 'managerNik.nama'
+            ],
+            [
+            'attribute' => 'adminNik',
+            'label' => 'nama penyetuju 2',
+            'value' => 'adminNik.nama'
+            ],
+            [
+            'attribute' => 'penolakNik',
+            'label' => 'nama penolak',
+            'value' => 'penolakNik.nama'
+            ],
+            // 'manager_nik',
+            // 'admin_nik',
+            //'penolak_nik',
+
+            ['class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update}'],
+        ],
+    ]); ?>
+
     <p>
         <?= Html::a('Create Hutang', ['create'], ['class' => 'btn btn-success']) ?>
     </p>

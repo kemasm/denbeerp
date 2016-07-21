@@ -41,9 +41,15 @@ $this->params['item'] = 'cuti';
                 'attribute' => 'admin',
                 'value' => 'admin.nama'
                 ],
-                'status',
+                //'state',
                 [
-                'attribute' => 'penolak',
+                'attribute' => 'state',
+                'label' => 'status',
+                'value' => 'state'
+                ],
+                [
+                'attribute' => 'penolak0',
+                'label' => 'penolak',
                 'value' => 'penolak0.nama'
                 ],
                 ['class' => 'yii\grid\ActionColumn',

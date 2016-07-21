@@ -30,7 +30,7 @@ $this->params['item'] = 'cuti';
                 'nik_penyetuju',
                 'nik_admin',
                 'keterangan',
-                'status',
+                'state',
                 'penolak',
             ],
             'options' => [
@@ -48,7 +48,16 @@ $this->params['item'] = 'cuti';
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Approve', ['approve', 'id' => $model->id_cuti],['class' => 'btn btn-info']) ?>
-        <?= Html::a('Disapprove', ['disapprove', 'id' => $model->id_cuti],['class' => 'btn btn-info']) ?>
+        <?php
+        if(Yii::$app->user->identity->jabatan == 'admin'||Yii::$app->user->identity->jabatan == 'manager' ||Yii::$app->user->identity->jabatan == 'hrd'){
+            echo Html::a('Approve', ['approve', 'id' => $model->id_cuti],['class' => 'btn btn-info']);    
+        }
+        ?>
+
+        <?php
+        if(Yii::$app->user->identity->jabatan == 'admin'||Yii::$app->user->identity->jabatan == 'manager' ||Yii::$app->user->identity->jabatan == 'hrd'){
+            echo Html::a('Disapprove', ['disapprove', 'id' => $model->id_cuti],['class' => 'btn btn-info']);
+        }
+        ?>
     </p>
 </div>

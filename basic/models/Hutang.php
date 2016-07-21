@@ -14,15 +14,21 @@ use Yii;
  * @property string $jaminan
  * @property integer $periode
  * @property string $file_surat_perjanjian
- * @property integer $sisa_pokok
- * @property integer $sisa_bunga
+ * @property integer $id
+ * @property string $status
+ * @property string $manager_nik
+ * @property string $admin_nik
+ * @property string $penolak_nik
  *
  * @property Angsuran[] $angsurans
- * @property Angsuran[] $angsurans0
  * @property Karyawan $nik0
+ * @property Karyawan $adminNik
+ * @property Karyawan $managerNik
+ * @property Karyawan $penolakNik
  */
 class Hutang extends \yii\db\ActiveRecord
 {
+    public $file_hutang;
     /**
      * @inheritdoc
      */
@@ -37,12 +43,22 @@ class Hutang extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_penyetujuan'], 'required'],
-            [['no_penyetujuan', 'jumlah', 'periode', 'sisa_pokok', 'sisa_bunga'], 'integer'],
+            [['no_penyetujuan', 'jumlah', 'periode'], 'integer'],
             [['tanggal_pengajuan'], 'safe'],
-            [['nik'], 'string', 'max' => 6],
-            [['jaminan', 'file_surat_perjanjian'], 'string', 'max' => 50],
+            [['nik', 'manager_nik', 'admin_nik', 'penolak_nik'], 'string', 'max' => 6],
+            [['jaminan', 'file_surat_perjanjian', 'status'], 'string', 'max' => 255],
+            ['status', 'default', 'value' => 'menunggu persetujuan'],
+            ['tanggal_pengajuan', 'default', 'value' => date('Y-m-d')],
+            ['status', 'default', 'value' => 'menunggu persetujuan'],
+            ['no_penyetujuan', 'default', 'value' => null],
+            ['file_surat_perjanjian', 'default', 'value' => null],
+            ['nik', 'default', 'value' => Yii::$app->user->id],
+            [['file_hutang'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf'],
+            //[['no_penyetujuan', 'nik'], 'unique', 'targetAttribute' => ['no_penyetujuan', 'nik'], 'message' => 'The combination of No Penyetujuan and Nik has already been taken.'],
             [['nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik' => 'nik']],
+            [['admin_nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['admin_nik' => 'nik']],
+            [['manager_nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['manager_nik' => 'nik']],
+            [['penolak_nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['penolak_nik' => 'nik']],
         ];
     }
 
@@ -53,14 +69,17 @@ class Hutang extends \yii\db\ActiveRecord
     {
         return [
             'no_penyetujuan' => 'No Penyetujuan',
-            'nik' => 'NIK',
+            'nik' => 'Nik',
             'jumlah' => 'Jumlah',
             'tanggal_pengajuan' => 'Tanggal Pengajuan',
             'jaminan' => 'Jaminan',
             'periode' => 'Periode',
             'file_surat_perjanjian' => 'File Surat Perjanjian',
-            'sisa_pokok' => 'Sisa Pokok',
-            'sisa_bunga' => 'Sisa Bunga',
+            'id' => 'ID',
+            'status' => 'Status',
+            'manager_nik' => 'Manager Nik',
+            'admin_nik' => 'Admin Nik',
+            'penolak_nik' => 'Penolak Nik',
         ];
     }
 
@@ -69,15 +88,7 @@ class Hutang extends \yii\db\ActiveRecord
      */
     public function getAngsurans()
     {
-        return $this->hasMany(Angsuran::className(), ['no_penyetujuan' => 'no_penyetujuan']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAngsurans0()
-    {
-        return $this->hasMany(Angsuran::className(), ['nik' => 'nik']);
+        return $this->hasMany(Angsuran::className(), ['hutang_id' => 'id']);
     }
 
     /**
@@ -86,5 +97,96 @@ class Hutang extends \yii\db\ActiveRecord
     public function getNik0()
     {
         return $this->hasOne(Karyawan::className(), ['nik' => 'nik']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdminNik()
+    {
+        return $this->hasOne(Karyawan::className(), ['nik' => 'admin_nik']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getManagerNik()
+    {
+        return $this->hasOne(Karyawan::className(), ['nik' => 'manager_nik']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPenolakNik()
+    {
+        return $this->hasOne(Karyawan::className(), ['nik' => 'penolak_nik']);
+    }
+
+    public function beforeSafe($insert = true){
+        if($insert){
+            $this->nik = Yii::$app->user->id;
+            $this->status = "menunggu persetujuan";
+            $this->tanggal_pengajuan = date();
+        }
+        return parent::beforeSafe($insert);
+    }
+
+    public function approval()
+    {
+        if($this->status == 'ditolak'){
+            return;
+        }
+        else if(Yii::$app->user->identity->jabatan == 'admin'){
+            if(Yii::$app->user->id != $this->admin_nik && $this->admin_nik){
+                $this->penyetuju_nik = Yii::$app->user->id;
+            }
+            $this->admin_nik = Yii::$app->user->id;
+            //dd($this->admin_nik);
+        }else if(Yii::$app->user->identity->jabatan == 'manager'){
+            if($this->nik == Yii::$app->user->identity->nik){
+                resetApproval();
+            } else{
+                $this->manager_nik = Yii::$app->user->id;
+            }   
+        }else if(Yii::$app->user->identity->jabatan == 'hrd'){
+            if($this->nik == Yii::$app->user->identity->nik){
+                resetApproval();
+            } else{
+                $this->manager_nik = Yii::$app->user->id;
+            }   
+        }
+
+        if($this->adminNik){
+            if($this->managerNik){
+                $this->status = 'disetujui';
+            }
+        }
+        //dd($this->admin_nik);
+        return;
+    }
+
+    public function disapproval(){
+        if($this->status <> 'disetujui'){
+            $this->penolak_nik = Yii::$app->user->id;
+            $this->status = "ditolak";
+        }
+    }
+
+    public function resetApproval(){
+        $this->admin_nik = null;
+        $this->penyetuju_nik = null;
+    }
+
+    public function upload(){
+        if($this->validate()){
+            if($this->file_hutang){
+                $this->file_surat_perjanjian = 'uploads/hutang/'.$this->id.'.pdf';
+                $this->file_hutang->saveAs($this->file_surat_perjanjian);
+                $this->file_hutang = null;
+            }
+
+            return true;
+        }else return false;
     }
 }

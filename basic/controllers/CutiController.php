@@ -107,7 +107,8 @@ class CutiController extends Controller
                         // Allow admins to delete
                         'roles' => [
                             User::JABATAN_MANAGER,
-                            User::JABATAN_ADMIN
+                            User::JABATAN_ADMIN,
+                            User::JABATAN_HRD,
                         ],
                     ],
                     [
@@ -116,7 +117,8 @@ class CutiController extends Controller
                         // Allow admins to delete
                         'roles' => [
                             User::JABATAN_MANAGER,
-                            User::JABATAN_ADMIN
+                            User::JABATAN_ADMIN,
+                            User::JABATAN_HRD,
                         ],
                     ],
                 ],
@@ -213,13 +215,17 @@ class CutiController extends Controller
         $model = $this->findModel($id);
         $jabatan = Yii::$app->user->identity->jabatan;
         //dd($jabatan);
-        if($jabatan == 'admin' || $jabatan == 'manager'){
+        //if($jabatan == 'admin' || $jabatan == 'manager' || $jabatan == 'hrd'){
 
             $model->approval();
+            //d($model->nik_penyetuju);
+            //d('approved');
 
             $model->save();
-        }
-
+            //dd($model);
+        //}
+        //d($model->karyawan->sisaCuti);
+        //dd($model);
         return $this->redirect(['view', 'id' => $model->id_cuti]);
     }
 
@@ -227,14 +233,14 @@ class CutiController extends Controller
         $model = $this->findModel($id);
         $jabatan = Yii::$app->user->identity->jabatan;
 
-        if($jabatan == 'admin' || $jabatan == 'manager'){
+        //if($jabatan == 'admin' || $jabatan == 'manager' || $jabatan == 'hrd'){
 
             $model->disapproval();
 
             $model->save();
-        }
+        //}
 
-        return $this->redirect(['view', 'id' => $model->id_cuti]);        
+        return $this->redirect(['index']);        
     }
 
     /**

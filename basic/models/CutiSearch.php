@@ -17,7 +17,7 @@ class CutiSearch extends Cuti
     public $admin;
     public $penolak0;
 
-    public $status;
+    public $state;
 
     /**
      * @inheritdoc
@@ -27,7 +27,7 @@ class CutiSearch extends Cuti
         return [
             [['id_cuti'], 'integer'],
             [['nik', 'tanggal_awal', 'tanggal_akhir', 'nik_penyetuju', 'keterangan', 'nik_admin'], 'safe'],
-            [['karyawan', 'penyetuju', 'admin', 'penolak0', 'status'], 'safe'],
+            [['karyawan', 'penyetuju', 'admin', 'penolak0', 'state'], 'safe'],
         ];
     }
 
@@ -88,7 +88,7 @@ class CutiSearch extends Cuti
         }
 
         // grid filtering conditions
-        if(Yii::$app->user->identity->jabatan == 'admin' || Yii::$app->user->identity->jabatan == 'manager'){ 
+        if(Yii::$app->user->identity->jabatan == 'admin' || Yii::$app->user->identity->jabatan == 'manager' || Yii::$app->user->identity->jabatan == 'hrd'){ 
             //dd($this->status); 
             $query->andFilterWhere([
                 'id_cuti' => $this->id_cuti,
@@ -104,14 +104,12 @@ class CutiSearch extends Cuti
                 ->andFilterWhere(['like', 'c.nama', $this->admin])
                 ->andFilterWhere(['like', 'd.nama', $this->penolak0]);
 
-            //dd($this->status == '1');
-            if($this->status == '2'){
-                $query->andWhere(['not',['penolak0' => null]]);
-            }
-            else if($this->status == '1'){
+            if($this->state == 'ditolak'){
+                $query->andWhere(['not',['penolak' => null]]);
+            } else if($this->state == 'disetujui'){
                 $query->andWhere(['not', ['nik_penyetuju' => null]])
                     ->andWhere(['not', ['nik_admin' => null]]);
-            }else if($this->status == '0'){
+            } else if($this->state == 'menunggu persetujuan'){
                 $query->andWhere(['nik_penyetuju' => null],['nik_admin' => null]);
             }
 
@@ -132,14 +130,12 @@ class CutiSearch extends Cuti
                 ->andFilterWhere(['like', 'c.nama', $this->admin])
                 ->andFilterWhere(['like', 'd.nama', $this->penolak0]);
 
-            //dd($this->status == '1');
-            if($this->status == '2'){
-                $query->andWhere(['not',['penolak0' => null]]);
-            }
-            else if($this->status == '1'){
+            if($this->state == 'ditolak'){
+                $query->andWhere(['not',['penolak' => null]]);
+            } else if($this->state == 'disetujui'){
                 $query->andWhere(['not', ['nik_penyetuju' => null]])
                     ->andWhere(['not', ['nik_admin' => null]]);
-            }else if($this->status == '0'){
+            } else if($this->state == 'menunggu persetujuan'){
                 $query->andWhere(['nik_penyetuju' => null],['nik_admin' => null]);
             }
 

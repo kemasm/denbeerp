@@ -12,14 +12,19 @@ use app\models\Hutang;
  */
 class HutangSearch extends Hutang
 {
+    public $nik0;
+    public $managerNik;
+    public $adminNik;
+    public $penolakNik;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['no_penyetujuan', 'jumlah', 'periode', 'sisa_pokok', 'sisa_bunga'], 'integer'],
-            [['nik', 'tanggal_pengajuan', 'jaminan', 'file_surat_perjanjian'], 'safe'],
+            [['no_penyetujuan', 'jumlah', 'periode', 'id'], 'integer'],
+            [['nik', 'tanggal_pengajuan', 'jaminan', 'file_surat_perjanjian', 'status', 'manager_nik', 'admin_nik', 'penolak_nik'], 'safe'],
+            [['nik0', 'managerNik', 'adminNik', 'penolakNik'], 'safe'],
         ];
     }
 
@@ -44,10 +49,31 @@ class HutangSearch extends Hutang
         $query = Hutang::find();
 
         // add conditions that should always apply here
-
+        $query -> joinWith(['nik0 a', 'managerNik b', 'adminNik c', 'penolakNik d']);
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['nik0'] = [
+            'asc' => ['a.nama' => SORT_ASC],
+            'desc' => ['a.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['managerNik'] = [
+            'asc' => ['b.nama' => SORT_ASC],
+            'desc' => ['b.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['adminNik'] = [
+            'asc' => ['c.nama' => SORT_ASC],
+            'desc' => ['c.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['penolakNik'] = [
+            'asc' => ['d.nama' => SORT_ASC],
+            'desc' => ['d.nama' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -63,13 +89,26 @@ class HutangSearch extends Hutang
             'jumlah' => $this->jumlah,
             'tanggal_pengajuan' => $this->tanggal_pengajuan,
             'periode' => $this->periode,
-            'sisa_pokok' => $this->sisa_pokok,
-            'sisa_bunga' => $this->sisa_bunga,
+            'id' => $this->id,
         ]);
+
+        if(Yii::$app->user->identity->jabatan == 'karyawan'){
+            $query->andFilterWhere([
+                'hutang.nik' => Yii::$app->user->id,
+            ]);
+        }
 
         $query->andFilterWhere(['like', 'nik', $this->nik])
             ->andFilterWhere(['like', 'jaminan', $this->jaminan])
-            ->andFilterWhere(['like', 'file_surat_perjanjian', $this->file_surat_perjanjian]);
+            ->andFilterWhere(['like', 'file_surat_perjanjian', $this->file_surat_perjanjian])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'manager_nik', $this->manager_nik])
+            ->andFilterWhere(['like', 'admin_nik', $this->admin_nik])
+            ->andFilterWhere(['like', 'penolak_nik', $this->penolak_nik])
+            ->andFilterWhere(['like', 'a.nama', $this->nik0])
+            ->andFilterWhere(['like', 'b.nama', $this->managerNik])
+            ->andFilterWhere(['like', 'c.nama', $this->adminNik])
+            ->andFilterWhere(['like', 'd.nama', $this->penolakNik]);
 
         return $dataProvider;
     }

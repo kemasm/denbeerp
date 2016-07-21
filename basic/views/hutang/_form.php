@@ -11,35 +11,51 @@ use yii\widgets\ActiveForm;
 <div class="hutang-form">
 
     <?php $form = ActiveForm::begin([
-            'fieldConfig' => [
-                'template' => 
-                    "<div class=\"row\">
-                        <div class=\"col-xs-3 form-label\">{label}</div>\n
-                        <div class=\"col-xs-9\">{input}</div>\n
-                        {error}
-                    </div>",
-            ],            
-        ]); ?>
+                'id' => 'login-form',
+                'options' => [],
+                'fieldConfig' => [
+                    'template' => 
+                        "<div class=\"row\">
+                            <div class=\"col-xs-3 form-label\">{label}</div>\n
+                            <div class=\"col-xs-9\">{input}</div>\n
+                            {error}
+                        </div>",
+                ],
+            ]); ?>
 
-    <?= $form->field($model, 'no_penyetujuan')->textInput() ?>
+    <?= ''//$form->field($model, 'no_penyetujuan')->textInput() ?>
+    <?php 
+        if(!$model->isNewRecord){
+            echo $form->field($model, 'no_penyetujuan')->textInput();
+        }
+    ?>
 
-    <?= $form->field($model, 'nik')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'nik')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'jumlah')->textInput() ?>
 
-    <?= $form->field($model, 'tanggal_pengajuan')->textInput() ?>
+    <?= ''//$form->field($model, 'tanggal_pengajuan')->textInput() ?>
 
     <?= $form->field($model, 'jaminan')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'periode')->textInput() ?>
 
-    <?= $form->field($model, 'file_surat_perjanjian')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'file_surat_perjanjian')->textInput(['maxlength' => true]) ?>
+    <?php 
+        if(!$model->isNewRecord){
+            echo $form->field($model, 'file_hutang')->fileInput();
+        }
+    ?>
 
-    <?= $form->field($model, 'sisa_pokok')->textInput() ?>
+    <?= ''//$form->field($model, 'status')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sisa_bunga')->textInput() ?>
+    <?= ''//$form->field($model, 'manager_nik')->textInput(['maxlength' => true]) ?>
 
-    <div class="form-group col-xs-offset-3 btn-create">
+    <?= ''//$form->field($model, 'admin_nik')->textInput(['maxlength' => true]) ?>
+
+    <?= ''//$form->field($model, 'penolak_nik')->textInput(['maxlength' => true]) ?>
+
+    <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
