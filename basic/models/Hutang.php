@@ -46,6 +46,7 @@ class Hutang extends \yii\db\ActiveRecord
             [['tanggal_pengajuan'], 'safe'],
             [['nik', 'manager_nik', 'admin_nik', 'penolak_nik'], 'string', 'max' => 6],
             [['jaminan', 'file_surat_perjanjian', 'status'], 'string', 'max' => 255],
+            ['status', 'default', 'value' => 'menunggu persetujuan'],
             [['no_penyetujuan', 'nik'], 'unique', 'targetAttribute' => ['no_penyetujuan', 'nik'], 'message' => 'The combination of No Penyetujuan and Nik has already been taken.'],
             [['nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik' => 'nik']],
             [['admin_nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['admin_nik' => 'nik']],
@@ -113,5 +114,50 @@ class Hutang extends \yii\db\ActiveRecord
     public function getPenolakNik()
     {
         return $this->hasOne(Karyawan::className(), ['nik' => 'penolak_nik']);
+    }
+
+    public function beforeSafe($insert = true){
+        if($insert){
+            $this->nik = Yii::$app->user->id;
+            $this->status = "menunggu persetujuan";
+            $this->tanggal_pengajuan = date();
+        }
+        return parent::beforeSafe($insert);
+    }
+
+    public function approval()
+    {
+        if($this->status == 'ditolak'){
+            return;
+        }
+        else if(Yii::$app->user->identity->jabatan == 'admin'){
+            if(Yii::$app->user->id != $this->admin_nik && $this->admin_nik){
+                $this->penyetuju_nik = Yii::$app->user->id;
+            }
+            $this->admin_nik = Yii::$app->user->id;
+        }else if(Yii::$app->user->identity->jabatan == 'manager'){
+            if($this->nik == Yii::$app->user->identity->nik){
+                
+            } else{
+                $this->penyetuju_nik = Yii::$app->user->id;
+            }   
+        }
+
+        if($admin_nik && $penyetuju_nik){
+            $this->status = 'disetujui';
+        }
+        return;
+    }
+
+    public function disapproval(){
+        if($this->status <> 'disetujui'){
+            $this->penolak_nik = Yii::$app->user->id;
+            $this->status = "ditolak";
+        }
+    }
+
+    public function resetApproval(){
+        $this->admin_nik = null;
+        $this->penyetuju_nik = null;
     }
 }

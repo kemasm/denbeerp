@@ -7,17 +7,15 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\HutangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Hutangs';
+$this->title = 'Hutang';
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['item'] = 'hutang';
 ?>
 <div class="hutang-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Hutang', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -29,6 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'jumlah',
             'tanggal_pengajuan',
             'jaminan',
+            [
+            'attribute' => 'penyetuju',
+            'value' => 'manager_nik.nama'
+            ],
             // 'periode',
             // 'file_surat_perjanjian',
             // 'id',
@@ -40,4 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+    <p>
+        <?= Html::a('Create Hutang', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 </div>

@@ -9,6 +9,7 @@ $this->title = 'Update Hutang: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Hutangs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
+$this->params['item'] = 'hutang';
 ?>
 <div class="hutang-update">
 

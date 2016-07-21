@@ -12,6 +12,10 @@ use app\models\Hutang;
  */
 class HutangSearch extends Hutang
 {
+    public $nik0;
+    public $manager_nik;
+    public $admin_nik;
+    public $penolak_nik;
     /**
      * @inheritdoc
      */
@@ -20,6 +24,7 @@ class HutangSearch extends Hutang
         return [
             [['no_penyetujuan', 'jumlah', 'periode', 'id'], 'integer'],
             [['nik', 'tanggal_pengajuan', 'jaminan', 'file_surat_perjanjian', 'status', 'manager_nik', 'admin_nik', 'penolak_nik'], 'safe'],
+            [['nik0', 'manager_nik', 'admin_nik', 'penolak_nik'], 'safe'],
         ];
     }
 
@@ -44,10 +49,31 @@ class HutangSearch extends Hutang
         $query = Hutang::find();
 
         // add conditions that should always apply here
-
+        $query -> joinWith(['nik0 a', 'manager_nik b', 'admin_nik c', 'penolak_nik d']);
+        
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['nik0'] = [
+            'asc' => ['a.nama' => SORT_ASC],
+            'desc' => ['a.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['manager_nik'] = [
+            'asc' => ['b.nama' => SORT_ASC],
+            'desc' => ['b.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['admin_nik'] = [
+            'asc' => ['c.nama' => SORT_ASC],
+            'desc' => ['c.nama' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['penolak_nik'] = [
+            'asc' => ['d.nama' => SORT_ASC],
+            'desc' => ['d.nama' => SORT_DESC],
+        ];
 
         $this->load($params);
 

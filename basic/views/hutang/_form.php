@@ -10,7 +10,18 @@ use yii\widgets\ActiveForm;
 
 <div class="hutang-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+                'options' => [],
+                'fieldConfig' => [
+                    'template' => 
+                        "<div class=\"row\">
+                            <div class=\"col-xs-3 form-label\">{label}</div>\n
+                            <div class=\"col-xs-9\">{input}</div>\n
+                            {error}
+                        </div>",
+                ],
+            ]); ?>
 
     <?= $form->field($model, 'no_penyetujuan')->textInput() ?>
 

@@ -9,13 +9,13 @@ use yii\helpers\Html;
 $this->title = 'Create Hutang';
 $this->params['breadcrumbs'][] = ['label' => 'Hutangs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['item'] = 'hutang';
 ?>
 <div class="hutang-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+	<div class="box">
+	    <h1 class="header-text"><?= Html::encode($this->title) ?></h1>
+	    <?= $this->render('_form', [
+	        'model' => $model,
+	    ]) ?>
+	</div>
 </div>
