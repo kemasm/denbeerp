@@ -47,6 +47,7 @@ class LoginForm extends Model
             $user = $this->getUser();
             if ($user){
                 if (!$user->validatePassword($this->password)) {
+                    dd($user);
                     $this->addError($attribute, 'Password salah.');
                 }
             } else {

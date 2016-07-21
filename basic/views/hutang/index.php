@@ -24,7 +24,12 @@ $this->params['item'] = 'hutang';
 
             //'no_penyetujuan',
             'id',
-            'nik',
+            //'nik',
+            [
+            'attribute' => 'nik0',
+            'label' => 'nama',
+            'value' => 'nik0.nama'
+            ],
             'jumlah',
             'tanggal_pengajuan',
             //'jaminan',
@@ -32,15 +37,18 @@ $this->params['item'] = 'hutang';
             // 'file_surat_perjanjian',
             'status',
             [
-            'attribute' => 'manager',
+            'attribute' => 'managerNik',
+            'label' => 'nama penyetuju 1',
             'value' => 'managerNik.nama'
             ],
             [
-            'attribute' => 'admin',
+            'attribute' => 'adminNik',
+            'label' => 'nama penyetuju 2',
             'value' => 'adminNik.nama'
             ],
             [
-            'attribute' => 'penolak',
+            'attribute' => 'penolakNik',
+            'label' => 'nama penolak',
             'value' => 'penolakNik.nama'
             ],
             // 'manager_nik',

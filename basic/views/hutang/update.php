@@ -12,11 +12,12 @@ $this->params['breadcrumbs'][] = 'Update';
 $this->params['item'] = 'hutang';
 ?>
 <div class="hutang-update">
+	<div class="box">
+		<h1><?= Html::encode($this->title) ?></h1>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+		<?= $this->render('_form', [
+		    'model' => $model,
+		]) ?>
+	</div>
 
 </div>

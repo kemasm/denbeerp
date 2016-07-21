@@ -23,27 +23,37 @@ use yii\widgets\ActiveForm;
                 ],
             ]); ?>
 
-    <?= $form->field($model, 'no_penyetujuan')->textInput() ?>
+    <?= ''//$form->field($model, 'no_penyetujuan')->textInput() ?>
+    <?php 
+        if(!$model->isNewRecord){
+            echo $form->field($model, 'no_penyetujuan')->textInput();
+        }
+    ?>
 
-    <?= $form->field($model, 'nik')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'nik')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'jumlah')->textInput() ?>
 
-    <?= $form->field($model, 'tanggal_pengajuan')->textInput() ?>
+    <?= ''//$form->field($model, 'tanggal_pengajuan')->textInput() ?>
 
     <?= $form->field($model, 'jaminan')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'periode')->textInput() ?>
 
-    <?= $form->field($model, 'file_surat_perjanjian')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'file_surat_perjanjian')->textInput(['maxlength' => true]) ?>
+    <?php 
+        if(!$model->isNewRecord){
+            echo $form->field($model, 'file_hutang')->fileInput();
+        }
+    ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'status')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'manager_nik')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'manager_nik')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'admin_nik')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'admin_nik')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'penolak_nik')->textInput(['maxlength' => true]) ?>
+    <?= ''//$form->field($model, 'penolak_nik')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

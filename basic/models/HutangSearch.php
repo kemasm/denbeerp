@@ -92,13 +92,23 @@ class HutangSearch extends Hutang
             'id' => $this->id,
         ]);
 
+        if(Yii::$app->user->identity->jabatan == 'karyawan'){
+            $query->andFilterWhere([
+                'hutang.nik' => Yii::$app->user->id,
+            ]);
+        }
+
         $query->andFilterWhere(['like', 'nik', $this->nik])
             ->andFilterWhere(['like', 'jaminan', $this->jaminan])
             ->andFilterWhere(['like', 'file_surat_perjanjian', $this->file_surat_perjanjian])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'manager_nik', $this->manager_nik])
             ->andFilterWhere(['like', 'admin_nik', $this->admin_nik])
-            ->andFilterWhere(['like', 'penolak_nik', $this->penolak_nik]);
+            ->andFilterWhere(['like', 'penolak_nik', $this->penolak_nik])
+            ->andFilterWhere(['like', 'a.nama', $this->nik0])
+            ->andFilterWhere(['like', 'b.nama', $this->managerNik])
+            ->andFilterWhere(['like', 'c.nama', $this->adminNik])
+            ->andFilterWhere(['like', 'd.nama', $this->penolakNik]);
 
         return $dataProvider;
     }

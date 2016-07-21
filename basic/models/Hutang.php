@@ -28,6 +28,7 @@ use Yii;
  */
 class Hutang extends \yii\db\ActiveRecord
 {
+    public $file_hutang;
     /**
      * @inheritdoc
      */
@@ -47,6 +48,12 @@ class Hutang extends \yii\db\ActiveRecord
             [['nik', 'manager_nik', 'admin_nik', 'penolak_nik'], 'string', 'max' => 6],
             [['jaminan', 'file_surat_perjanjian', 'status'], 'string', 'max' => 255],
             ['status', 'default', 'value' => 'menunggu persetujuan'],
+            ['tanggal_pengajuan', 'default', 'value' => date('Y-m-d')],
+            ['status', 'default', 'value' => 'menunggu persetujuan'],
+            ['no_penyetujuan', 'default', 'value' => null],
+            ['file_surat_perjanjian', 'default', 'value' => null],
+            ['nik', 'default', 'value' => Yii::$app->user->id],
+            [['file_hutang'], 'file', 'skipOnEmpty' => true, 'extensions' => 'pdf'],
             //[['no_penyetujuan', 'nik'], 'unique', 'targetAttribute' => ['no_penyetujuan', 'nik'], 'message' => 'The combination of No Penyetujuan and Nik has already been taken.'],
             [['nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik' => 'nik']],
             [['admin_nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['admin_nik' => 'nik']],
@@ -169,5 +176,17 @@ class Hutang extends \yii\db\ActiveRecord
     public function resetApproval(){
         $this->admin_nik = null;
         $this->penyetuju_nik = null;
+    }
+
+    public function upload(){
+        if($this->validate()){
+            if($this->file_hutang){
+                $this->file_surat_perjanjian = 'uploads/hutang/'.$this->id.'.pdf';
+                $this->file_hutang->saveAs($this->file_surat_perjanjian);
+                $this->file_hutang = null;
+            }
+
+            return true;
+        }else return false;
     }
 }

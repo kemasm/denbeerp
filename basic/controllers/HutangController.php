@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\components\AccessRule;
 use app\models\User;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
 
 /**
  * HutangController implements the CRUD actions for Hutang model.
@@ -184,8 +185,16 @@ class HutangController extends Controller
 
         if($jabatan == 'admin' || Yii::$app->user->id == $model->nik)
         {
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load(Yii::$app->request->post())) {
+
+                $model->file_hutang = UploadedFile::getInstance($model, 'file_hutang');
+
+                if($model->upload()){
+
+                    $model->save();
+
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             } else {
                 return $this->render('update', [
                     'model' => $model,
