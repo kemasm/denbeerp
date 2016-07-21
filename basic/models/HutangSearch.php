@@ -18,8 +18,8 @@ class HutangSearch extends Hutang
     public function rules()
     {
         return [
-            [['no_penyetujuan', 'jumlah', 'periode', 'sisa_pokok', 'sisa_bunga'], 'integer'],
-            [['nik', 'tanggal_pengajuan', 'jaminan', 'file_surat_perjanjian'], 'safe'],
+            [['no_penyetujuan', 'jumlah', 'periode', 'id'], 'integer'],
+            [['nik', 'tanggal_pengajuan', 'jaminan', 'file_surat_perjanjian', 'status', 'manager_nik', 'admin_nik', 'penolak_nik'], 'safe'],
         ];
     }
 
@@ -63,13 +63,16 @@ class HutangSearch extends Hutang
             'jumlah' => $this->jumlah,
             'tanggal_pengajuan' => $this->tanggal_pengajuan,
             'periode' => $this->periode,
-            'sisa_pokok' => $this->sisa_pokok,
-            'sisa_bunga' => $this->sisa_bunga,
+            'id' => $this->id,
         ]);
 
         $query->andFilterWhere(['like', 'nik', $this->nik])
             ->andFilterWhere(['like', 'jaminan', $this->jaminan])
-            ->andFilterWhere(['like', 'file_surat_perjanjian', $this->file_surat_perjanjian]);
+            ->andFilterWhere(['like', 'file_surat_perjanjian', $this->file_surat_perjanjian])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'manager_nik', $this->manager_nik])
+            ->andFilterWhere(['like', 'admin_nik', $this->admin_nik])
+            ->andFilterWhere(['like', 'penolak_nik', $this->penolak_nik]);
 
         return $dataProvider;
     }

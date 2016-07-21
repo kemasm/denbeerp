@@ -29,9 +29,15 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'file_surat_perjanjian') ?>
 
-    <?php // echo $form->field($model, 'sisa_pokok') ?>
+    <?php // echo $form->field($model, 'id') ?>
 
-    <?php // echo $form->field($model, 'sisa_bunga') ?>
+    <?php // echo $form->field($model, 'status') ?>
+
+    <?php // echo $form->field($model, 'manager_nik') ?>
+
+    <?php // echo $form->field($model, 'admin_nik') ?>
+
+    <?php // echo $form->field($model, 'penolak_nik') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
