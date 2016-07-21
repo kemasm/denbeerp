@@ -45,13 +45,13 @@ $this->params['item'] = 'hutang';
         ]) ?>
 
         <?php
-        if(Yii::$app->user->identity->jabatan == 'admin'||Yii::$app->user->identity->jabatan == 'manager'){
+        if(Yii::$app->user->identity->jabatan == 'admin'||Yii::$app->user->identity->jabatan == 'manager' ||Yii::$app->user->identity->jabatan == 'hrd'){
             echo Html::a('Approve', ['approve', 'id' => $model->id],['class' => 'btn btn-info']);    
         }
         ?>
 
         <?php
-        if(Yii::$app->user->identity->jabatan == 'admin'||Yii::$app->user->identity->jabatan == 'manager'){
+        if(Yii::$app->user->identity->jabatan == 'admin'||Yii::$app->user->identity->jabatan == 'manager' ||Yii::$app->user->identity->jabatan == 'hrd'){
             echo Html::a('Disapprove', ['disapprove', 'id' => $model->id],['class' => 'btn btn-info']);
         }
         ?>

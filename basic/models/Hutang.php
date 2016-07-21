@@ -142,6 +142,12 @@ class Hutang extends \yii\db\ActiveRecord
             } else{
                 $this->manager_nik = Yii::$app->user->id;
             }   
+        }else if(Yii::$app->user->identity->jabatan == 'hrd'){
+            if($this->nik == Yii::$app->user->identity->nik){
+                resetApproval();
+            } else{
+                $this->manager_nik = Yii::$app->user->id;
+            }   
         }
 
         if($this->adminNik){

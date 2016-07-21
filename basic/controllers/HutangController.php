@@ -107,7 +107,8 @@ class HutangController extends Controller
                         // Allow admins to delete
                         'roles' => [
                             User::JABATAN_MANAGER,
-                            User::JABATAN_ADMIN
+                            User::JABATAN_ADMIN,
+                            User::JABATAN_HRD
                         ],
                     ],
                     [
@@ -116,7 +117,8 @@ class HutangController extends Controller
                         // Allow admins to delete
                         'roles' => [
                             User::JABATAN_MANAGER,
-                            User::JABATAN_ADMIN
+                            User::JABATAN_ADMIN,
+                            User::JABATAN_HRD
                         ],
                     ],
                 ],
@@ -209,12 +211,12 @@ class HutangController extends Controller
     {
         $model = $this->findModel($id);
         $jabatan = Yii::$app->user->identity->jabatan;
-        if($jabatan == 'admin' || $jabatan == 'manager'){
+        //if($jabatan == 'admin' || $jabatan == 'manager'){
 
             $model->approval();
 
             $model->save();
-        }
+        //}
         //d($model);
         return $this->redirect(['view', 'id' => $model->id]);
     }
@@ -223,12 +225,12 @@ class HutangController extends Controller
     {
         $model = $this->findModel($id);
         $jabatan = Yii::$app->user->identity->jabatan;
-        if($jabatan == 'admin' || $jabatan == 'manager'){
+        //if($jabatan == 'admin' || $jabatan == 'manager'){
 
             $model->disapproval();
 
             $model->save();
-        }
+        //}
 
         return $this->redirect(['index']);
     }
