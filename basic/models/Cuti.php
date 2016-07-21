@@ -120,7 +120,16 @@ class Cuti extends \yii\db\ActiveRecord
             return 1;
         }else 
             return 0;
-    }  
+    }
+
+    public function getState(){
+        $stat = $this->status;
+        if($stat == 2){
+            return 'ditolak';
+        }else if($stat == 1){
+            return 'disetujui';
+        }else return 'menunggu persetujuan';
+    } 
 
     public function beforeSave($insert = true) {
         if ($insert){
@@ -164,7 +173,9 @@ class Cuti extends \yii\db\ActiveRecord
     }
 
     public function validateDates() {
+        //dd(Yii::$app->user->identity->sisacuti);
         if(Yii::$app->user->identity->sisacuti - ((strtotime($this->tanggal_akhir) - strtotime($this->tanggal_awal))/60/60/24 + 1) < 0){
+            //dd(Yii::$app->user->identity->sisacuti);
             $this->addError('tanggal_akhir','Sisa Cuti tidak cukup');
         }
     }

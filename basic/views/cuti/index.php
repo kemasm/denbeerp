@@ -41,7 +41,7 @@ $this->params['item'] = 'cuti';
                 'attribute' => 'admin',
                 'value' => 'admin.nama'
                 ],
-                'status',
+                'state',
                 [
                 'attribute' => 'penolak',
                 'value' => 'penolak0.nama'

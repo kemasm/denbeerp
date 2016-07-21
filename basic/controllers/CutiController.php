@@ -234,7 +234,7 @@ class CutiController extends Controller
             $model->save();
         }
 
-        return $this->redirect(['view', 'id' => $model->id_cuti]);        
+        return $this->redirect(['index']);        
     }
 
     /**
