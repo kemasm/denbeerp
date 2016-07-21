@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/uploads/denbe/logo-white.png', ['height' => 30]),
+        'brandLabel' => Html::img('@web/uploads/denbe/dask_logo.png',['height'=>'28']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -66,51 +66,49 @@ AppAsset::register($this);
                         'label' => 'General',
                         'icon' => 'fa-tasks',
                         'items' => [
-                            ['label' => 'Hutang', 'icon'=>'fa-info','url'=>Url::to(['hutang/index']),'active'=>($this->params['item'] == 'hutang')],
-                            ['label' => 'Cuti', 'icon'=>'fa-phone','url'=>Url::to(['cuti/index']),'active'=>($this->params['item'] == 'cuti')],
+                            ['label' => 'Hutang', 'url'=>Url::to(['hutang/index']),'active'=>($this->params['item'] == 'hutang')],
+                            ['label' => 'Cuti', 'url'=>Url::to(['cuti/index']),'active'=>($this->params['item'] == 'cuti')],
                         ],
                     ],
                     [
                         'label' => 'HR',
                         'icon' => 'fa-user',
                         'items' => [
-                            ['label' => 'Karyawan', 'icon'=>'fa-info','url'=>Url::to(['karyawan/index']),'active'=>($this->params['item'] == 'karyawan')],
-                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
-                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                            ['label' => 'Karyawan', 'url'=>Url::to(['karyawan/index']),'active'=>($this->params['item'] == 'karyawan')],
                         ],
                     ],
                     [
                         'label' => 'Procurement',
                         'icon' => 'fa-credit-card-alt',
                         'items' => [
-                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
-                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                            ['label' => 'A',  'url'=>'#'],
+                            ['label' => 'B',  'url'=>'#'],
                         ],
                     ],
                     [
                         'label' => 'Marketing',
                         'icon' => 'fa-line-chart',
                         'items' => [
-                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
-                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                            ['label' => 'A',  'url'=>'#'],
+                            ['label' => 'B',  'url'=>'#'],
                         ],
                     ],
                     [
                         'label' => 'Fixed Asset',
                         'icon' => 'fa-archive',
                         'items' => [
-                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
-                            ['label' => 'Contact', 'icon'=>'fa-phone', 'url'=>'#'],
+                            ['label' => 'A',  'url'=>'#'],
+                            ['label' => 'B',  'url'=>'#'],
                         ],
                     ],
                     [
                         'label' => 'GL',
                         'icon' => 'fa-book',
                         'items' => [
-                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
-                            ['label' => 'Contact', 'icon'=>'fa-phone', 'items' =>
+                            ['label' => 'About',  'url'=>'#'],
+                            ['label' => 'Contact',  'items' =>
                                 [
-                            ['label' => 'About', 'icon'=>'fa-info', 'url'=>'#'],
+                            ['label' => 'About',  'url'=>'#'],
                                 ]
                             ],
                         ],

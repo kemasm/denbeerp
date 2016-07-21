@@ -50,7 +50,7 @@ $this->title = 'Login';
     <div class="card" style="display:none;"></div>
     <div class="card">
         <div class="titlehead">
-            <h1 class="title"><?= Html::img('uploads/denbe/logo.png', ['width'=>'150px']);?></h1>
+            <h1 class="title"><?= Html::img('uploads/denbe/dask_logo_white.png', ['width'=>'150px']);?></h1>
         </div>
         <div class="divider"></div>
         <?php $form = ActiveForm::begin([
@@ -73,6 +73,7 @@ $this->title = 'Login';
                 <button><span>LOGIN</span></button>
             </div>
         <?php ActiveForm::end(); ?>
+        <?= Html::img('uploads/denbe/logo.png', ['class'=>'denbe-logo','height'=>'30px']);?>
   </div>
 </div>
 <?php
