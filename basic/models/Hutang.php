@@ -47,7 +47,7 @@ class Hutang extends \yii\db\ActiveRecord
             [['nik', 'manager_nik', 'admin_nik', 'penolak_nik'], 'string', 'max' => 6],
             [['jaminan', 'file_surat_perjanjian', 'status'], 'string', 'max' => 255],
             ['status', 'default', 'value' => 'menunggu persetujuan'],
-            [['no_penyetujuan', 'nik'], 'unique', 'targetAttribute' => ['no_penyetujuan', 'nik'], 'message' => 'The combination of No Penyetujuan and Nik has already been taken.'],
+            //[['no_penyetujuan', 'nik'], 'unique', 'targetAttribute' => ['no_penyetujuan', 'nik'], 'message' => 'The combination of No Penyetujuan and Nik has already been taken.'],
             [['nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['nik' => 'nik']],
             [['admin_nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['admin_nik' => 'nik']],
             [['manager_nik'], 'exist', 'skipOnError' => true, 'targetClass' => Karyawan::className(), 'targetAttribute' => ['manager_nik' => 'nik']],
@@ -135,17 +135,21 @@ class Hutang extends \yii\db\ActiveRecord
                 $this->penyetuju_nik = Yii::$app->user->id;
             }
             $this->admin_nik = Yii::$app->user->id;
+            //dd($this->admin_nik);
         }else if(Yii::$app->user->identity->jabatan == 'manager'){
             if($this->nik == Yii::$app->user->identity->nik){
-                
+                resetApproval();
             } else{
-                $this->penyetuju_nik = Yii::$app->user->id;
+                $this->manager_nik = Yii::$app->user->id;
             }   
         }
 
-        if($admin_nik && $penyetuju_nik){
-            $this->status = 'disetujui';
+        if($this->adminNik){
+            if($this->managerNik){
+                $this->status = 'disetujui';
+            }
         }
+        //dd($this->admin_nik);
         return;
     }
 

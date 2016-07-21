@@ -88,7 +88,7 @@ class CutiSearch extends Cuti
         }
 
         // grid filtering conditions
-        if(Yii::$app->user->identity->jabatan == 'admin' || Yii::$app->user->identity->jabatan == 'manager'){ 
+        if(Yii::$app->user->identity->jabatan == 'admin' || Yii::$app->user->identity->jabatan == 'manager' || Yii::$app->user->identity->jabatan == 'hrd'){ 
             //dd($this->status); 
             $query->andFilterWhere([
                 'id_cuti' => $this->id_cuti,

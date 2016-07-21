@@ -22,24 +22,33 @@ $this->params['item'] = 'hutang';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'no_penyetujuan',
+            //'no_penyetujuan',
+            'id',
             'nik',
             'jumlah',
             'tanggal_pengajuan',
-            'jaminan',
+            //'jaminan',
+            //'periode',
+            // 'file_surat_perjanjian',
+            'status',
+            [
+            'attribute' => 'manager',
+            'value' => 'managerNik.nama'
+            ],
+            [
+            'attribute' => 'admin',
+            'value' => 'adminNik.nama'
+            ],
             [
             'attribute' => 'penolak',
             'value' => 'penolakNik.nama'
             ],
-            // 'periode',
-            // 'file_surat_perjanjian',
-            // 'id',
-            // 'status',
             // 'manager_nik',
             // 'admin_nik',
             //'penolak_nik',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update}'],
         ],
     ]); ?>
 

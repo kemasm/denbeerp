@@ -140,6 +140,7 @@ class Cuti extends \yii\db\ActiveRecord
 
     public function approval()
     {
+        //d(Yii::$app->user->id);
         if($this->status == 2){
             return;
         }
@@ -148,13 +149,20 @@ class Cuti extends \yii\db\ActiveRecord
                 $this->nik_penyetuju = Yii::$app->user->id;
             }
             $this->nik_admin = Yii::$app->user->id;
-        } else if(Yii::$app->user->identity->jabatan == 'manager' || Yii::$app->user->identity->jabatan == 'hrd'){
+        } else if(Yii::$app->user->identity->jabatan == 'manager'){
             if($this->nik == Yii::$app->user->identity->nik){
                 $this->resetApproval();
             } else {
                 $this->nik_penyetuju = Yii::$app->user->id;
             }
-        } 
+        } else if(Yii::$app->user->identity->jabatan == 'hrd'){
+            if($this->nik == Yii::$app->user->identity->nik){
+                $this->resetApproval();
+            } else {
+                $this->nik_penyetuju = Yii::$app->user->id;
+            }
+        }
+        //dd($this->nik_penyetuju);
         return;
     }
 

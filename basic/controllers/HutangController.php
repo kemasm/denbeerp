@@ -215,7 +215,7 @@ class HutangController extends Controller
 
             $model->save();
         }
-
+        //d($model);
         return $this->redirect(['view', 'id' => $model->id]);
     }
 
