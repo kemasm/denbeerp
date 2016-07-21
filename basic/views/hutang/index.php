@@ -28,8 +28,8 @@ $this->params['item'] = 'hutang';
             'tanggal_pengajuan',
             'jaminan',
             [
-            'attribute' => 'penyetuju',
-            'value' => 'manager_nik.nama'
+            'attribute' => 'penolak',
+            'value' => 'penolakNik.nama'
             ],
             // 'periode',
             // 'file_surat_perjanjian',
@@ -37,7 +37,7 @@ $this->params['item'] = 'hutang';
             // 'status',
             // 'manager_nik',
             // 'admin_nik',
-            // 'penolak_nik',
+            //'penolak_nik',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

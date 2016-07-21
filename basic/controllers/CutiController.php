@@ -107,7 +107,8 @@ class CutiController extends Controller
                         // Allow admins to delete
                         'roles' => [
                             User::JABATAN_MANAGER,
-                            User::JABATAN_ADMIN
+                            User::JABATAN_ADMIN,
+                            User::JABATAN_HRD
                         ],
                     ],
                     [
@@ -116,7 +117,8 @@ class CutiController extends Controller
                         // Allow admins to delete
                         'roles' => [
                             User::JABATAN_MANAGER,
-                            User::JABATAN_ADMIN
+                            User::JABATAN_ADMIN,
+                            User::JABATAN_HRD
                         ],
                     ],
                 ],
@@ -213,7 +215,7 @@ class CutiController extends Controller
         $model = $this->findModel($id);
         $jabatan = Yii::$app->user->identity->jabatan;
         //dd($jabatan);
-        if($jabatan == 'admin' || $jabatan == 'manager'){
+        if($jabatan == 'admin' || $jabatan == 'manager' || $jabatan == 'hrd'){
 
             $model->approval();
 
@@ -227,7 +229,7 @@ class CutiController extends Controller
         $model = $this->findModel($id);
         $jabatan = Yii::$app->user->identity->jabatan;
 
-        if($jabatan == 'admin' || $jabatan == 'manager'){
+        if($jabatan == 'admin' || $jabatan == 'manager' || $jabatan == 'hrd'){
 
             $model->disapproval();
 
