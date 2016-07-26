@@ -31,6 +31,9 @@ $this->params['item'] = 'hutang';
                 'admin_nik',
                 'penolak_nik',
             ],
+            'options' => [
+                'class' => 'table detail-view'
+            ]
         ]) ?>
     </div>
 
